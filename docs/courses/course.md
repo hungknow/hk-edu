@@ -16,9 +16,42 @@ Pricing
 The permissions on the course can be reference in the [document](../permissions/index.md).
 
 # REST API
-- `GET /v1/courses/`: Get the list of available courses
-- `POST /v1/courses/search`: Search the courses
-- `GET /v1/courses/{course_id}`: Get the detail of a specific course by its ID
+
+### GET `/v1/courses/`
+Get the list of available courses
+
+```json
+{
+    "courses": [
+        {
+            "id": "course_id_1",
+            "name": "Name of course",
+            "description": "The short description of the course displayed below the name",
+            "thumbnailUrl": "/files/course_thumbnail_id_1.png",
+        }
+    ]
+}
+```
+
+### POST `/v1/courses/search`
+Search the courses by the parameters
+
+Input
+```json
+{
+    "courseName": "some text",
+}
+```
+
+Output
+```json
+{
+    "searchResult": []
+}
+```
+
+### GET `/v1/courses/{course_id}`
+Get the detail of a specific course by its ID
 
 # Services
 
@@ -59,5 +92,4 @@ The permissions on the course can be reference in the [document](../permissions/
 
 References
 - [Participants of course](./courseParticipant.md)
-- [Storage Persistence](./coursePersistence.md)
 - [Pricing of course](./coursePricing.md)
