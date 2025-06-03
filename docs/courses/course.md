@@ -53,8 +53,76 @@ Output
 ### GET `/v1/courses/{course_id}`
 Get the detail of a specific course by its ID
 
+# <a name="models">Models</a>
+The models define the business domain models used by the `courses` module.
+The JSON field use the camelCase naming convention.
+
+- Course
+    - `id`: 
+    - `createdByUserID`: The course can be created by a specific user
+    - `createdAt`: The timestamp at which this course is generated
+    - `title`: The main content of this course
+    - `description`: The short description of this course
+    - `thumbnailUrl`: 
+    - `lessonIDs`: The list of lesson IDs. The order of Ids in this array is the order of lesson
+    - `classTimeSlots`: List of available class timeslots. 
+        - The format is "type | data_of_type | start_time| end_time", start_time and end_time is 24 hours format without space.
+            - The available enum for type is
+                - "w", the week day. The valid data of `data_of_type` is [0-6].
+                - "d", the specific day. The valid data of `data_of_type` is ISO string
+        ```json
+        {
+            "classTimeSlots": [
+                {
+                    // ISO string representing the 00:00 AM of start date
+                    "startTimestamp": "2025-06-03T00:00:00.000Z",
+                    "endTimestamp": "2025-07-03T00:00:00.000Z",
+                    "slots": 
+                        // Monday, Wednesday, Friday from 17:30 to 21:00
+                        [
+                            "w|0|1730|2100",
+                            "w|2|1730|2100",
+                            "w|4|1730|2100"
+                        ],
+                },
+                {
+                    "startTimestamp": "2025-06-03T00:00:00.000Z",
+                    "endTimestamp": "2025-07-03T00:00:00.000Z",
+                    // Tuesday, Thursday, Saturday from 17:30 to 21:00
+                    "slots": [
+                        "w|1|1730|2100",
+                        "w|3|1730|2100",
+                        "w|5|1730|2100"
+                    ]
+                    
+                }
+            ]
+        }
+        ```
+
+- Lesson
+    - `id`
+    - `createdByUserId`
+    - `createdAt`
+    - `title`
+    - `courseId`
+    - `thumbnailUrl`
+    - `content`: The serialized data of `yjs` model
+
+    There's no `order` field in lesson model, because the `course` model use the order of the IDs of lesson.
+
+<!-- - LessonExercise
+- LessonExerciseStep -->
+
+
 # Services
 
+CourseService
+- `create`
+- `getByID`
+
+
+CoursePersistence
 
 # Persistence
 
