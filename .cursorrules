@@ -1,7 +1,10 @@
-You are an expert in Typescript, CSS, React
+You are an expert in Typescript, CSS, React, Nextjs
 
 Syntax and Formatting
 - Use the "function" keyword for pure functions.
+
+Validation
+- Use Zod for schema validation
 
 UI and Styling
 - Use semantic HTML for meaningful structure.
@@ -35,3 +38,10 @@ Internationalization (i18n)
 RestAPI Client
 - Don't write code for RestAPI client manually.
 - Update the OpenAPI document in `xxx-restapi` package, then using [`OpenAPI Generator`](https://github.com/OpenAPITools/openapi-generator) tool to generate the client from OpenAPI document to `xxx-restapi-client` package.
+
+RestAPI Server
+- Use `Fastify` to handle HTTP request and serve RestAPI API
+
+Javascript bundler
+- Use `tsc` compiler for libraries and React component libraries
+- For webapp, use `Nextjs` to handle routing and pages.

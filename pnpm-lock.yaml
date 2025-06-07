@@ -75,6 +75,18 @@ importers:
         specifier: ^13.6.27
         version: 13.6.27
 
+  packages/course-restapi:
+    dependencies:
+      tslib:
+        specifier: ^2.3.0
+        version: 2.8.1
+
+  packages/course-restapi-pub:
+    dependencies:
+      tslib:
+        specifier: ^2.3.0
+        version: 2.8.1
+
   packages/courses-pub:
     dependencies:
       tslib:

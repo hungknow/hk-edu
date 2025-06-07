@@ -1,6 +1,7 @@
 The REST API of `courses`.
 
-The OpenAPI document is generated at [link]()
+The OpenAPI document is generated at [link](../../packages/course-restapi-pub/openapi.yaml)
+The implementation of RestAPI server is implement in folder [`course-restapi`](../../packages/course-restapi)
 
 ### GET `/v1/courses/`
 Get the list of available courses

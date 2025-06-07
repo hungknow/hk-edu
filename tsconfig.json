@@ -5,6 +5,12 @@
   "references": [
     {
       "path": "./packages/courses-pub"
+    },
+    {
+      "path": "./packages/course-restapi-pub"
+    },
+    {
+      "path": "./packages/course-restapi"
     }
   ]
 }
