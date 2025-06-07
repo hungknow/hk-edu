@@ -15,44 +15,6 @@ Pricing
 
 The permissions on the course can be reference in the [document](../permissions/index.md).
 
-# REST API
-
-### GET `/v1/courses/`
-Get the list of available courses
-
-```json
-{
-    "courses": [
-        {
-            "id": "course_id_1",
-            "name": "Name of course",
-            "description": "The short description of the course displayed below the name",
-            "thumbnailUrl": "/files/course_thumbnail_id_1.png",
-        }
-    ]
-}
-```
-
-### POST `/v1/courses/search`
-Search the courses by the parameters
-
-Input
-```json
-{
-    "courseName": "some text",
-}
-```
-
-Output
-```json
-{
-    "searchResult": []
-}
-```
-
-### GET `/v1/courses/{course_id}`
-Get the detail of a specific course by its ID
-
 # <a name="models">Models</a>
 The models define the business domain models used by the `courses` module.
 The JSON field use the camelCase naming convention.
@@ -64,6 +26,7 @@ The JSON field use the camelCase naming convention.
     - `title`: The main content of this course
     - `description`: The short description of this course
     - `thumbnailUrl`: 
+    - `iconUrl`: 
     - `lessonIDs`: The list of lesson IDs. The order of Ids in this array is the order of lesson
     - `classTimeSlots`: List of available class timeslots. 
         - The format is "type | data_of_type | start_time| end_time", start_time and end_time is 24 hours format without space.
@@ -117,12 +80,13 @@ The JSON field use the camelCase naming convention.
 
 # Services
 
-CourseService
-- `create`
-- `getByID`
+- `createCourse`
+- `getCourseByID`
+<!-- - `addLessonToCourse` -->
 
-
-CoursePersistence
+Actions for persistence
+- `saveNewCourseOnDB`
+- `updateCourseOnDB`
 
 # Persistence
 
@@ -157,7 +121,7 @@ CoursePersistence
     ```
 
 
-
 References
 - [Participants of course](./courseParticipant.md)
 - [Pricing of course](./coursePricing.md)
+- [Rest API](./courseRestAPI.md)
