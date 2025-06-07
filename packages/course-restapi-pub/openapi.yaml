@@ -1,0 +1,188 @@
+openapi: 3.1.0
+info:
+  title: Courses API
+  version: v1
+  description: API for managing courses, participants, and pricing.
+
+paths:
+  /v1/courses:
+    get:
+      summary: Get the list of available courses
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CourseList'
+    post:
+      summary: Search the courses
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                search_term:
+                  type: string
+                  description: The search term to filter courses
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CourseList'
+
+  /v1/courses/{course_id}:
+    get:
+      summary: Get the detail of a specific course by its ID
+      parameters:
+        - in: path
+          name: course_id
+          required: true
+          schema:
+            type: string
+          description: The ID of the course to retrieve
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CourseDetail'
+
+  /v1/courses/participants:
+    post:
+      summary: Enroll a user in a course
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                courseID:
+                  type: string
+                  description: The ID of the course
+                userID:
+                  type: string
+                  description: The ID of the user
+                roles:
+                  type: array
+                  items:
+                    type: string
+                    description: The role of the user in the course (e.g., student, instructor)
+      responses:
+        '201':
+          description: Successfully enrolled the user in the course
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnrollmentSuccess'
+
+  /v1/course/{courseID}/pricing:
+    get:
+      summary: Returns the pricing of the course.
+      parameters:
+        - in: path
+          name: courseID
+          required: true
+          schema:
+            type: string
+          description: The ID of the course to retrieve pricing for
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CoursePricing'
+
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+    CoursePricing:
+      type: object
+      properties:
+        courseID:
+          type: string
+          description: The ID of the course
+        final_pricing:
+          type: object
+          properties:
+            currency:
+              type: string
+              description: The currency of the pricing
+            amount:
+              type: string
+              description: The final pricing amount after promotion
+        initialPricing:
+          type: object
+          properties:
+            currency:
+              type: string
+              description: The currency of the pricing
+            amount:
+              type: string
+              description: The initial pricing amount before promotion
+        promotion:
+          type: object
+          properties:
+            type:
+              type: string
+              description: The type of promotion (e.g., percentage)
+            amount:
+              type: string
+              description: The amount of the promotion
+    CourseList:
+      type: array
+      items:
+        type: object
+        properties:
+          course_id:
+            type: string
+            description: The ID of the course
+          name:
+            type: string
+            description: The name of the course
+          description:
+            type: string
+            description: A brief description of the course
+    CourseDetail:
+      type: object
+      properties:
+        course_id:
+          type: string
+          description: The ID of the course
+        name:
+          type: string
+          description: The name of the course
+        description:
+          type: string
+          description: A detailed description of the course
+        lessons:
+          type: array
+          items:
+            type: object
+            properties:
+              lesson_id:
+                type: string
+                description: The ID of the lesson
+              title:
+                type: string
+                description: The title of the lesson
+    EnrollmentSuccess:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Confirmation message for successful enrollment
