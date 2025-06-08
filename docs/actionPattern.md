@@ -3,10 +3,12 @@
 The Action Pattern is a design pattern that encapsulates operations as objects. This pattern is particularly useful in TypeScript applications for managing business logic, domain operations, and state changes in a type-safe and maintainable way.
 
 The properties of an action 
-- It should have a name which is self-explanatory on what it does eg: CreateCourse, AddLessonToCourse, UpdateLesson. The name follow naming pattern `{Verb}{MainObject}{To}{TargetObject}`.
+- It should have a name which is self-explanatory on what it does eg: CreateCourse, AddLessonToCourse, UpdateLesson. The name follow naming pattern `{Verb}{MainObject}{To|Of}{TargetObject}`.
 - It must be request/response agnostic. It doesn’t deal with the Request class, nor does it send a Response back. This responsibility is handled by the RestAPI handler.
 - It can have other actions as a dependency.
 - It must enforce business rules by throwing an Exception if anything prevent it from executing and/or returning the expected value, and leave the caller the responsability of how to render/respond to the exception.
+- Each action must define in an distinct file, it's helpful to mock other dependencies in the unit test.
+- The Action interface is define in package with name pattern `packageA-pub`. The real implementation of action is defined in `packageA` package.
 
 ## Core Concepts
 
@@ -23,10 +25,6 @@ export interface CreateCourse {
     (input: InputType): OutputType
 }
 
-// context interface if needed
-export interface SomeActionBuilder {
-    build(): SomeAction
-}
 ```
 
 ## Examples
@@ -34,13 +32,13 @@ export interface SomeActionBuilder {
 ### 1. Simple Action
 
 ```typescript
-// Define the action interface
+// Define the action interface. Define in `packageA-pub` package
 export interface CreateCourse {
     (initialCourse: Course): void;
 }
 
-// Implement the action
-const createCourse: CreateCourse = (initialCourse) => {
+// Implement the action in `packageA` package
+export const createCourse: CreateCourse = (initialCourse) => {
     // Implementation details
 };
 ```
@@ -52,7 +50,7 @@ interface FetchCourseById {
     (courseId: string): Promise<Course>;
 }
 
-const fetchCourseById: FetchCourseById = async (courseId) => {
+export const fetchCourseById: FetchCourseById = async (courseId) => {
     // Implementation details
     return course;
 };
@@ -60,23 +58,20 @@ const fetchCourseById: FetchCourseById = async (courseId) => {
 
 ### 3. Action has other Actions as dependency
 
+
 ```typescript
+import { notifySystem } from './notifySystem'
+
 // Define the action interface
-export interface CreateCourse {
-    (initialCourse: Course): void;
+export interface CreateLesson {
+    (initialLesson: Lesson): Promise<void>;
 }
 
-// Define the action interface
-// export interface CreateCourseBuilder {
-//     (
-//         action: ActionA,        // This is the instance of other action
-//         service: ServiceAPI     // This is the thirdparty API
-//     ): CreateCourse;
-// }
-
-// const createCourseBuilder: CreateCourseBuilder = (action: ActionA, service: ServiceAPI ) => CreateCourse {
-    
-// }
+// Implement the action
+export const createLesson: CreateLesson = async (initialLesson) => {
+    // Use the action directly. Jest can mock `notifySystem`
+    await notifySystem('parameter1')
+};
 ```
 
 
@@ -85,35 +80,12 @@ export interface CreateCourse {
 1. **Naming Conventions**
    - Use verb-noun combinations for action names
    - Be descriptive and specific
-   - Example: `CreateCourse`, `UpdateUserProfile`, `FetchOrderDetails`
+   - Example: `CreateCourse`, `AddLessonToCourse`, `UpdateTitleOfCourse`
 
 2. **Type Definition**
    - Define clear input and output types
    - Use TypeScript's built-in utility types when appropriate
    - Consider making immutable types using `readonly`
-
-3. **Error Handling**
-   - Use TypeScript's type system to handle errors
-   - Consider returning Result types for complex operations
-   ```typescript
-   interface Result<T, E = Error> {
-       success: boolean;
-       data?: T;
-       error?: E;
-   }
-   ```
-
-4. **Documentation**
-   - Document the purpose of each action
-   - Include examples in documentation
-   - Document any side effects
-
-## Benefits
-
-1. **Maintainability**: Actions are easy to test, modify, and maintain
-2. **Reusability**: Actions can be composed and reused across the application
-3. **Type Safety**: TypeScript provides compile-time type checking
-4. **Separation of Concerns**: Business logic is separated from implementation details
 
 ## Common Use Cases
 
@@ -122,14 +94,6 @@ export interface CreateCourse {
 3. State Management
 4. Event Handling
 5. Business Logic Implementation
-
-## Integration with Other Patterns
-
-Actions can be combined with other patterns:
-- Repository Pattern
-- Command Pattern
-- Observer Pattern
-- Factory Pattern
 
 ## Testing
 
@@ -148,5 +112,3 @@ describe('CreateCourse', () => {
     });
 });
 ```
-
-This pattern is particularly useful in TypeScript applications where type safety and maintainability are priorities. It helps in creating clean, testable, and maintainable code while leveraging TypeScript's type system to prevent errors at compile time.

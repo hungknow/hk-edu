@@ -15,6 +15,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CourseList'
+  
+  /v1/courses:
+    post:
+      summary: Create a new course
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CoursePostRequest'
+
+  /v1/courses/search:
     post:
       summary: Search the courses
       requestBody:
@@ -53,52 +65,75 @@ paths:
               schema:
                 $ref: '#/components/schemas/CourseDetail'
 
-  /v1/courses/participants:
-    post:
-      summary: Enroll a user in a course
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                courseID:
-                  type: string
-                  description: The ID of the course
-                userID:
-                  type: string
-                  description: The ID of the user
-                roles:
-                  type: array
-                  items:
-                    type: string
-                    description: The role of the user in the course (e.g., student, instructor)
-      responses:
-        '201':
-          description: Successfully enrolled the user in the course
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EnrollmentSuccess'
-
-  /v1/course/{courseID}/pricing:
+  /v1/courses/{course_id}/lessons:
     get:
-      summary: Returns the pricing of the course.
+      summary: Return list of lessons of a specific course
       parameters:
         - in: path
-          name: courseID
+          name: course_id
           required: true
           schema:
             type: string
-          description: The ID of the course to retrieve pricing for
+          description: The ID of the course to retrieve lessons for
       responses:
         '200':
           description: Successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CoursePricing'
+                type: object
+                properties:
+                  lessons:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Lesson'
+
+  # /v1/courses/participants:
+  #   post:
+  #     summary: Enroll a user in a course
+  #     requestBody:
+  #       required: true
+  #       content:
+  #         application/json:
+  #           schema:
+  #             type: object
+  #             properties:
+  #               courseID:
+  #                 type: string
+  #                 description: The ID of the course
+  #               userID:
+  #                 type: string
+  #                 description: The ID of the user
+  #               roles:
+  #                 type: array
+  #                 items:
+  #                   type: string
+  #                   description: The role of the user in the course (e.g., student, instructor)
+  #     responses:
+  #       '201':
+  #         description: Successfully enrolled the user in the course
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: '#/components/schemas/EnrollmentSuccess'
+
+  # /v1/course/{courseID}/pricing:
+  #   get:
+  #     summary: Returns the pricing of the course.
+  #     parameters:
+  #       - in: path
+  #         name: courseID
+  #         required: true
+  #         schema:
+  #           type: string
+  #         description: The ID of the course to retrieve pricing for
+  #     responses:
+  #       '200':
+  #         description: Successful operation
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: '#/components/schemas/CoursePricing'
 
 components:
   schemas:
@@ -157,6 +192,15 @@ components:
           description:
             type: string
             description: A brief description of the course
+    CoursePostRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the course
+        description:
+          type: string
+          description: A detailed description of the course
     CourseDetail:
       type: object
       properties:
@@ -186,3 +230,18 @@ components:
         message:
           type: string
           description: Confirmation message for successful enrollment
+    Lesson:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the lesson
+        course_id:
+          type: string
+          description: The ID of the course the lesson belongs to
+        title:
+          type: string
+          description: The title of the lesson
+        content:
+          type: string
+          description: The yjs binary content of the lesson

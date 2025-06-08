@@ -1,0 +1,6 @@
+---
+description: 
+globs: *.ts,*.tsx
+alwaysApply: false
+---
+When creating new file or folder in package `course-restapi`, referencing the file structure in file [course-restapi.md](mdc:docs/courses/course-restapi.md)

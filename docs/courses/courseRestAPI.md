@@ -1,40 +1,7 @@
 The REST API of `courses`.
 
-The OpenAPI document is generated at [link](../../packages/course-restapi-pub/openapi.yaml)
-The implementation of RestAPI server is implement in folder [`course-restapi`](../../packages/course-restapi)
+The OpenAPI specification for this API is defined in [course-restapi-pub/openapi.yaml](../../packages/course-restapi-pub/openapi.yaml). This `openapi.yaml` file serves as the single source of truth for the API definition. Client code and models for the REST API are generated from this `openapi.yaml` file using the `@hey-api/openapi-ts` tool. After any updates to the OpenAPI specification (e.g., changes to `openapi.yaml`), the AI model **must execute** the command `npm run openapi-ts` within the `[course-restapi-pub](../../packages/course-restapi-pub/)` folder to regenerate the client code.
 
-### GET `/v1/courses/`
-Get the list of available courses
 
-```json
-{
-    "courses": [
-        {
-            "id": "course_id_1",
-            "name": "Name of course",
-            "description": "The short description of the course displayed below the name",
-            "thumbnailUrl": "/files/course_thumbnail_id_1.png",
-        }
-    ]
-}
-```
-
-### POST `/v1/courses/search`
-Search the courses by the parameters
-
-Input
-```json
-{
-    "courseName": "some text",
-}
-```
-
-Output
-```json
-{
-    "searchResult": []
-}
-```
-
-### GET `/v1/courses/{course_id}`
-Get the detail of a specific course by its ID
+The models of course RESTAPI is defined in package [`course-restapi-pub`](../../packages/course-restapi-pub/).
+The implementation of RestAPI server is implemented in package [`course-restapi`](../../packages/course-restapi).
