@@ -87,14 +87,6 @@ export const createLesson: CreateLesson = async (initialLesson) => {
    - Use TypeScript's built-in utility types when appropriate
    - Consider making immutable types using `readonly`
 
-## Common Use Cases
-
-1. Domain Operations
-2. API Calls
-3. State Management
-4. Event Handling
-5. Business Logic Implementation
-
 ## Testing
 
 Actions are easily testable due to their functional nature:

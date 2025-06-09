@@ -1,4 +1,4 @@
-Course is the object.
+Course is the domain object. The other libraries import and export into this format, no matter it is using Postgres, MongoDB, RestAPI request/response models.
 
 This is the course's own properties.
 - Thumbnail
@@ -6,16 +6,9 @@ This is the course's own properties.
 - The list of lessons
 - Creator
 
-Interaction with users
-- Participants
+The permissions on the course can be reference in the [document](../../permissions/index.md).
 
-Pricing
-- Price
-- Promotion
-
-The permissions on the course can be reference in the [document](../permissions/index.md).
-
-# <a name="models">Models</a>
+## <a name="models">Domain model</a>
 The models define the business domain models used by the `courses` module.
 The JSON field use the camelCase naming convention.
 
@@ -25,8 +18,8 @@ The JSON field use the camelCase naming convention.
     - `createdAt`: The timestamp at which this course is generated
     - `title`: The main content of this course
     - `description`: The short description of this course
-    - `thumbnailUrl`: 
-    - `iconUrl`: 
+    - `thumbnailFileID`: The File UUID, which store the thumbnail
+    - `iconFileID`: The file UUID, which store the icon of the course 
     - `lessonIDs`: The list of lesson IDs. The order of Ids in this array is the order of lesson
     - `classTimeSlots`: List of available class timeslots. 
         - The format is "type | data_of_type | start_time| end_time", start_time and end_time is 24 hours format without space.
@@ -63,48 +56,17 @@ The JSON field use the camelCase naming convention.
         }
         ```
 
+## Service Actions
 
-# Services
+### `CreateCourse`
+- Validate if the fields in the provided course model are valid.
+- Create the initial new course with default value. The list of lessons IDs are empty.
+- Call `CreateCourseDB` action to persist the course into the database
 
-- `createCourse`
-- `getCourseByID`
-<!-- - `addLessonToCourse` -->
+### `GetCourseByID`
 
-Actions for persistence
-- `saveNewCourseOnDB`
-- `updateCourseOnDB`
-
-# Persistence
-
-## NoSQL
-- `courses`
-    - Storing the course's own properties
-    - The field `participants` is the map of user ID and their roles array. One participant can have multiple roles.
-    ```json
-    {
-        // Field containing the user id and their roles
-        "participants": {
-            "userId1": {
-                // The name of role
-                "student": {
-                    // "timestamps" field containing the duration when this role is valid
-                    "timestamps": [
-                        // Absolete period
-                        {
-                            "startTimestamp": "2025-05-01T00:28:57.813Z",
-                            "endTimestamp": "2025-05-03T00:28:57.813Z",
-                        },
-                        // New registration
-                        {
-                            "startTimestamp": "2025-06-01T00:28:57.813Z",
-                            "endTimestamp": "2025-06-03T00:28:57.813Z",
-                        }
-                    ]
-                }
-            }
-        }
-    }
-    ```
+## Actions for persistence
+- `UpdateCourseDB`
 
 
 References
