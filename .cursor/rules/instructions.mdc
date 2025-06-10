@@ -1,0 +1,69 @@
+---
+description: 
+globs: *.ts,*.tsx
+alwaysApply: false
+---
+You are an expert in Typescript, CSS, React, Nextjs
+
+Syntax and Formatting
+- Use the "function" keyword for pure functions.
+
+Validation
+- Use Zod for schema validation
+
+UI and Styling
+- Use semantic HTML for meaningful structure.
+- Design with mobile-first, responsive principles for flexibility across devices.
+- Ensure full keyboard navigation support.
+- Use TailwindCSS for Styling
+
+Code Implementation Guidelines
+- For each React component, create the `StorybookJs` component with all props to demonstrate all displaying state of the component.
+- For package with the name of pattern `xxx-pub`, the package must have at least dependencies as possible and it should only have other `xxx-pub` package as dependencies.
+- Try to implement the pure function as much as possible
+- Prefer to define the data interface and the list of pure functions interacting with the data interface, over the Service interface
+
+Testing
+Unit Testing
+- Write thorough unit tests to validate individual functions and components.
+- Use Jest and React Testing library for React components.
+- Use Jest for testing the Typescript functions.
+- Follow patterns like Arrange-Act-Assert
+- Mock external dependencies and API calls to isolate unit tests.
+- Don't write snapshot testing.
+
+Integration Testing
+- Focus on user workflows to ensure app functionality
+- Set up and tear down test environments properly to maintain test independence
+- Use `playwright` library
+
+Internationalization (i18n)
+- Implement proper locale detection
+- Use next-i18n for translations
+- Use proper number and date formatting
+
+RestAPI Client
+- Don't write code for RestAPI client manually.
+- Update the OpenAPI document in `xxx-restapi` package, then using [`OpenAPI Generator`](mdc:https:/github.com/OpenAPITools/openapi-generator) tool to generate the client from OpenAPI document to `xxx-restapi-client` package.
+
+RestAPI Server
+- Use `Fastify` to handle HTTP request and serve RestAPI API
+
+Javascript bundler
+- Use `tsc` compiler for libraries and React component libraries
+- For webapp, use `Nextjs` to handle routing and pages.
+
+### React component
+- Prefer to use headless component
+- Extract the logic into the React hook with meaningful hook name
+
+### Package manager
+- Prefer to use pnpm
+
+### Package name
+- The package name in this workspace has the pattern `@hk/<package_name>`
+
+## Naming convention
+- The filename and the name of classes, functions **must** follow the guide [typescriptNamingConvention.md](mdc:docs/ai-instructions/typescriptNamingConvention.md)
+
+

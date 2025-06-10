@@ -1,0 +1,13 @@
+{
+  "name": "@hk/course-nosql-persistence",
+  "version": "0.0.1",
+  "private": true,
+  "type": "commonjs",
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "dependencies": {
+    "mongodb": "^6.17.0",
+    "tslib": "^2.3.0",
+    "zod": "^3.25.56"
+  }
+}

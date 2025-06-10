@@ -1,0 +1,30 @@
+{
+  "name": "@hk/course-restapi-pub",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "openapi-ts": "openapi-ts",
+     "build": "tsc -p tsconfig.lib.json"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "development": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "dependencies": {
+    "@hey-api/client-fetch": "^0.12.0",
+    "tslib": "^2.3.0",
+    "zod": "^3.25.56"
+  },
+  "devDependencies": {
+    "@hey-api/openapi-ts": "^0.71.1"
+  }
+}

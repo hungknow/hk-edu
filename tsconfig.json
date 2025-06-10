@@ -2,5 +2,27 @@
   "extends": "./tsconfig.base.json",
   "compileOnSave": false,
   "files": [],
-  "references": []
+  "references": [
+    {
+      "path": "./packages/course-pub"
+    },
+    {
+      "path": "./packages/course-restapi-pub"
+    },
+    {
+      "path": "./packages/course-restapi"
+    },
+    {
+      "path": "./packages/course-nosql-persistence"
+    },
+    {
+      "path": "./packages/block-editor-pub"
+    },
+    {
+      "path": "./packages/block-editor"
+    },
+    {
+      "path": "./packages/course"
+    }
+  ]
 }

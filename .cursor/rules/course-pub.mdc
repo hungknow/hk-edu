@@ -1,0 +1,6 @@
+---
+description: 
+globs: packages/course-pub/**/*
+alwaysApply: false
+---
+When creating new file or folder in package `course-pub`, referencing the file structure in file [course-pub.md](mdc:docs/courses/course-pub.md)

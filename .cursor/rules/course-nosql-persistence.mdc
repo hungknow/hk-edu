@@ -1,0 +1,6 @@
+---
+description: 
+globs: packages/course-nosql-persistence/**/*
+alwaysApply: false
+---
+When creating new file or folder in package `course-nosql-persistence`, referencing the file structure in file [index.md](mdc:docs/courses/course-nosql-persistence/index.md)
