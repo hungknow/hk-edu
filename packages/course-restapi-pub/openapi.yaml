@@ -15,8 +15,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CourseList'
-  
-  /v1/courses:
     post:
       summary: Create a new course
       requestBody:
@@ -26,67 +24,67 @@ paths:
             schema:
               $ref: '#/components/schemas/CoursePostRequest'
 
-  /v1/courses/search:
-    post:
-      summary: Search the courses
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                search_term:
-                  type: string
-                  description: The search term to filter courses
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CourseList'
+  # /v1/courses/search:
+  #   post:
+  #     summary: Search the courses
+  #     requestBody:
+  #       required: true
+  #       content:
+  #         application/json:
+  #           schema:
+  #             type: object
+  #             properties:
+  #               search_term:
+  #                 type: string
+  #                 description: The search term to filter courses
+  #     responses:
+  #       '200':
+  #         description: Successful operation
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: '#/components/schemas/CourseList'
 
-  /v1/courses/{course_id}:
-    get:
-      summary: Get the detail of a specific course by its ID
-      parameters:
-        - in: path
-          name: course_id
-          required: true
-          schema:
-            type: string
-          description: The ID of the course to retrieve
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CourseDetail'
+  # /v1/courses/{course_id}:
+  #   get:
+  #     summary: Get the detail of a specific course by its ID
+  #     parameters:
+  #       - in: path
+  #         name: course_id
+  #         required: true
+  #         schema:
+  #           type: string
+  #         description: The ID of the course to retrieve
+  #     responses:
+  #       '200':
+  #         description: Successful operation
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: '#/components/schemas/CourseDetail'
 
-  /v1/courses/{course_id}/lessons:
-    get:
-      summary: Return list of lessons of a specific course
-      parameters:
-        - in: path
-          name: course_id
-          required: true
-          schema:
-            type: string
-          description: The ID of the course to retrieve lessons for
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  lessons:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Lesson'
+  # /v1/courses/{course_id}/lessons:
+  #   get:
+  #     summary: Return list of lessons of a specific course
+  #     parameters:
+  #       - in: path
+  #         name: course_id
+  #         required: true
+  #         schema:
+  #           type: string
+  #         description: The ID of the course to retrieve lessons for
+  #     responses:
+  #       '200':
+  #         description: Successful operation
+  #         content:
+  #           application/json:
+  #             schema:
+  #               type: object
+  #               properties:
+  #                 lessons:
+  #                   type: array
+  #                   items:
+  #                     $ref: '#/components/schemas/Lesson'
 
   # /v1/courses/participants:
   #   post:
@@ -145,103 +143,82 @@ components:
           format: int32
         message:
           type: string
-    CoursePricing:
-      type: object
-      properties:
-        courseID:
-          type: string
-          description: The ID of the course
-        final_pricing:
-          type: object
-          properties:
-            currency:
-              type: string
-              description: The currency of the pricing
-            amount:
-              type: string
-              description: The final pricing amount after promotion
-        initialPricing:
-          type: object
-          properties:
-            currency:
-              type: string
-              description: The currency of the pricing
-            amount:
-              type: string
-              description: The initial pricing amount before promotion
-        promotion:
-          type: object
-          properties:
-            type:
-              type: string
-              description: The type of promotion (e.g., percentage)
-            amount:
-              type: string
-              description: The amount of the promotion
+    # CoursePricing:
+    #   type: object
+    #   properties:
+    #     courseID:
+    #       type: string
+    #       description: The ID of the course
+    #     final_pricing:
+    #       type: object
+    #       properties:
+    #         currency:
+    #           type: string
+    #           description: The currency of the pricing
+    #         amount:
+    #           type: string
+    #           description: The final pricing amount after promotion
+    #     initialPricing:
+    #       type: object
+    #       properties:
+    #         currency:
+    #           type: string
+    #           description: The currency of the pricing
+    #         amount:
+    #           type: string
+    #           description: The initial pricing amount before promotion
+    #     promotion:
+    #       type: object
+    #       properties:
+    #         type:
+    #           type: string
+    #           description: The type of promotion (e.g., percentage)
+    #         amount:
+    #           type: string
+    #           description: The amount of the promotion
     CourseList:
       type: array
       items:
-        type: object
-        properties:
-          course_id:
-            type: string
-            description: The ID of the course
-          name:
-            type: string
-            description: The name of the course
-          description:
-            type: string
-            description: A brief description of the course
+        $ref: '#/components/schemas/Course'
     CoursePostRequest:
       type: object
       properties:
-        name:
+        title:
           type: string
-          description: The name of the course
+          description: The title of the course
         description:
           type: string
           description: A detailed description of the course
-    CourseDetail:
-      type: object
-      properties:
-        course_id:
-          type: string
-          description: The ID of the course
-        name:
-          type: string
-          description: The name of the course
-        description:
-          type: string
-          description: A detailed description of the course
-        lessons:
-          type: array
-          items:
-            type: object
-            properties:
-              lesson_id:
-                type: string
-                description: The ID of the lesson
-              title:
-                type: string
-                description: The title of the lesson
-    EnrollmentSuccess:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Confirmation message for successful enrollment
-    Lesson:
+    Course:
       type: object
       properties:
         id:
           type: string
-          description: The ID of the lesson
-        course_id:
-          type: string
-          description: The ID of the course the lesson belongs to
+          description: The ID of the course
         title:
           type: string
-          description: The title of the lesson
-        content:
+          description: The title of the course
+        description:
           type: string
-          description: The yjs binary content of the lesson
+          description: A detailed description of the course
+    # EnrollmentSuccess:
+    #   type: object
+    #   properties:
+    #     message:
+    #       type: string
+    #       description: Confirmation message for successful enrollment
+    # Lesson:
+    #   type: object
+    #   properties:
+    #     id:
+    #       type: string
+    #       description: The ID of the lesson
+    #     course_id:
+    #       type: string
+    #       description: The ID of the course the lesson belongs to
+    #     title:
+    #       type: string
+    #       description: The title of the lesson
+    #     content:
+    #       type: string
+    #       description: The yjs binary content of the lesson

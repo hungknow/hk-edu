@@ -5,107 +5,32 @@ export type _Error = {
     message?: string;
 };
 
-export type CoursePricing = {
-    /**
-     * The ID of the course
-     */
-    courseID?: string;
-    final_pricing?: {
-        /**
-         * The currency of the pricing
-         */
-        currency?: string;
-        /**
-         * The final pricing amount after promotion
-         */
-        amount?: string;
-    };
-    initialPricing?: {
-        /**
-         * The currency of the pricing
-         */
-        currency?: string;
-        /**
-         * The initial pricing amount before promotion
-         */
-        amount?: string;
-    };
-    promotion?: {
-        /**
-         * The type of promotion (e.g., percentage)
-         */
-        type?: string;
-        /**
-         * The amount of the promotion
-         */
-        amount?: string;
-    };
-};
+export type CourseList = Array<Course>;
 
-export type CourseList = Array<{
+export type CoursePostRequest = {
     /**
-     * The ID of the course
+     * The title of the course
      */
-    course_id?: string;
-    /**
-     * The name of the course
-     */
-    name?: string;
-    /**
-     * A brief description of the course
-     */
-    description?: string;
-}>;
-
-export type CourseDetail = {
-    /**
-     * The ID of the course
-     */
-    course_id?: string;
-    /**
-     * The name of the course
-     */
-    name?: string;
+    title?: string;
     /**
      * A detailed description of the course
      */
     description?: string;
-    lessons?: Array<{
-        /**
-         * The ID of the lesson
-         */
-        lesson_id?: string;
-        /**
-         * The title of the lesson
-         */
-        title?: string;
-    }>;
 };
 
-export type EnrollmentSuccess = {
+export type Course = {
     /**
-     * Confirmation message for successful enrollment
-     */
-    message?: string;
-};
-
-export type Lesson = {
-    /**
-     * The ID of the lesson
+     * The ID of the course
      */
     id?: string;
     /**
-     * The ID of the course the lesson belongs to
-     */
-    course_id?: string;
-    /**
-     * The title of the lesson
+     * The title of the course
      */
     title?: string;
     /**
-     * The yjs binary content of the lesson
+     * A detailed description of the course
      */
-    content?: string;
+    description?: string;
 };
 
 export type GetV1CoursesData = {
@@ -125,116 +50,11 @@ export type GetV1CoursesResponses = {
 export type GetV1CoursesResponse = GetV1CoursesResponses[keyof GetV1CoursesResponses];
 
 export type PostV1CoursesData = {
-    body: {
-        /**
-         * The search term to filter courses
-         */
-        search_term?: string;
-    };
+    body: CoursePostRequest;
     path?: never;
     query?: never;
     url: '/v1/courses';
 };
-
-export type PostV1CoursesResponses = {
-    /**
-     * Successful operation
-     */
-    200: CourseList;
-};
-
-export type PostV1CoursesResponse = PostV1CoursesResponses[keyof PostV1CoursesResponses];
-
-export type GetV1CoursesByCourseIdData = {
-    body?: never;
-    path: {
-        /**
-         * The ID of the course to retrieve
-         */
-        course_id: string;
-    };
-    query?: never;
-    url: '/v1/courses/{course_id}';
-};
-
-export type GetV1CoursesByCourseIdResponses = {
-    /**
-     * Successful operation
-     */
-    200: CourseDetail;
-};
-
-export type GetV1CoursesByCourseIdResponse = GetV1CoursesByCourseIdResponses[keyof GetV1CoursesByCourseIdResponses];
-
-export type GetV1CoursesByCourseIdLessonsData = {
-    body?: never;
-    path: {
-        /**
-         * The ID of the course to retrieve lessons for
-         */
-        course_id: string;
-    };
-    query?: never;
-    url: '/v1/courses/{course_id}/lessons';
-};
-
-export type GetV1CoursesByCourseIdLessonsResponses = {
-    /**
-     * Successful operation
-     */
-    200: {
-        lessons?: Array<Lesson>;
-    };
-};
-
-export type GetV1CoursesByCourseIdLessonsResponse = GetV1CoursesByCourseIdLessonsResponses[keyof GetV1CoursesByCourseIdLessonsResponses];
-
-export type PostV1CoursesParticipantsData = {
-    body: {
-        /**
-         * The ID of the course
-         */
-        courseID?: string;
-        /**
-         * The ID of the user
-         */
-        userID?: string;
-        roles?: Array<string>;
-    };
-    path?: never;
-    query?: never;
-    url: '/v1/courses/participants';
-};
-
-export type PostV1CoursesParticipantsResponses = {
-    /**
-     * Successfully enrolled the user in the course
-     */
-    201: EnrollmentSuccess;
-};
-
-export type PostV1CoursesParticipantsResponse = PostV1CoursesParticipantsResponses[keyof PostV1CoursesParticipantsResponses];
-
-export type GetV1CourseByCourseIdPricingData = {
-    body?: never;
-    path: {
-        /**
-         * The ID of the course to retrieve pricing for
-         */
-        courseID: string;
-    };
-    query?: never;
-    url: '/v1/course/{courseID}/pricing';
-};
-
-export type GetV1CourseByCourseIdPricingResponses = {
-    /**
-     * Successful operation
-     */
-    200: CoursePricing;
-};
-
-export type GetV1CourseByCourseIdPricingResponse = GetV1CourseByCourseIdPricingResponses[keyof GetV1CourseByCourseIdPricingResponses];
 
 export type ClientOptions = {
     baseUrl: `${string}://${string}` | (string & {});

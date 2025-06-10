@@ -7,47 +7,17 @@ export const zError = z.object({
     message: z.string().optional()
 });
 
-export const zCoursePricing = z.object({
-    courseID: z.string().optional(),
-    final_pricing: z.object({
-        currency: z.string().optional(),
-        amount: z.string().optional()
-    }).optional(),
-    initialPricing: z.object({
-        currency: z.string().optional(),
-        amount: z.string().optional()
-    }).optional(),
-    promotion: z.object({
-        type: z.string().optional(),
-        amount: z.string().optional()
-    }).optional()
-});
-
-export const zCourseList = z.array(z.object({
-    course_id: z.string().optional(),
-    name: z.string().optional(),
-    description: z.string().optional()
-}));
-
-export const zCourseDetail = z.object({
-    course_id: z.string().optional(),
-    name: z.string().optional(),
-    description: z.string().optional(),
-    lessons: z.array(z.object({
-        lesson_id: z.string().optional(),
-        title: z.string().optional()
-    })).optional()
-});
-
-export const zEnrollmentSuccess = z.object({
-    message: z.string().optional()
-});
-
-export const zLesson = z.object({
+export const zCourse = z.object({
     id: z.string().optional(),
-    course_id: z.string().optional(),
     title: z.string().optional(),
-    content: z.string().optional()
+    description: z.string().optional()
+});
+
+export const zCourseList = z.array(zCourse);
+
+export const zCoursePostRequest = z.object({
+    title: z.string().optional(),
+    description: z.string().optional()
 });
 
 /**
@@ -55,54 +25,4 @@ export const zLesson = z.object({
  */
 export const zGetV1CoursesResponse = zCourseList;
 
-export const zPostV1CoursesData = z.object({
-    search_term: z.string().optional()
-});
-
-/**
- * Successful operation
- */
-export const zPostV1CoursesResponse = zCourseList;
-
-/**
- * The ID of the course to retrieve
- */
-export const zGetV1CoursesByCourseIdParameterCourseId = z.string();
-
-/**
- * Successful operation
- */
-export const zGetV1CoursesByCourseIdResponse = zCourseDetail;
-
-/**
- * The ID of the course to retrieve lessons for
- */
-export const zGetV1CoursesByCourseIdLessonsParameterCourseId = z.string();
-
-/**
- * Successful operation
- */
-export const zGetV1CoursesByCourseIdLessonsResponse = z.object({
-    lessons: z.array(zLesson).optional()
-});
-
-export const zPostV1CoursesParticipantsData = z.object({
-    courseID: z.string().optional(),
-    userID: z.string().optional(),
-    roles: z.array(z.string()).optional()
-});
-
-/**
- * Successfully enrolled the user in the course
- */
-export const zPostV1CoursesParticipantsResponse = zEnrollmentSuccess;
-
-/**
- * The ID of the course to retrieve pricing for
- */
-export const zGetV1CourseByCourseIdPricingParameterCourseId = z.string();
-
-/**
- * Successful operation
- */
-export const zGetV1CourseByCourseIdPricingResponse = zCoursePricing;
+export const zPostV1CoursesData = zCoursePostRequest;

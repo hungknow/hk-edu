@@ -44,7 +44,7 @@ Internationalization (i18n)
 
 RestAPI Client
 - Don't write code for RestAPI client manually.
-- Update the OpenAPI document in `xxx-restapi` package, then using [`OpenAPI Generator`](https://github.com/OpenAPITools/openapi-generator) tool to generate the client from OpenAPI document to `xxx-restapi-client` package.
+- Update the OpenAPI document in `xxx-restapi` package, then using [`OpenAPI Generator`](mdc:https:/github.com/OpenAPITools/openapi-generator) tool to generate the client from OpenAPI document to `xxx-restapi-client` package.
 
 RestAPI Server
 - Use `Fastify` to handle HTTP request and serve RestAPI API
@@ -61,4 +61,9 @@ Javascript bundler
 - Prefer to use pnpm
 
 ### Package name
-- THe package name in this workspace has the pattern `@hk/<package_name>`
+- The package name in this workspace has the pattern `@hk/<package_name>`
+
+## Naming convention
+- The filename and the name of classes, functions **must** follow the guide [typescriptNamingConvention.md](mdc:docs/ai-instructions/typescriptNamingConvention.md)
+
+
