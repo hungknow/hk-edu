@@ -1,15 +1,11 @@
 {
-  "name": "@hk/course-restapi-pub",
+  "name": "@hk/course",
   "version": "0.0.1",
   "private": true,
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "scripts": {
-    "openapi-ts": "openapi-ts",
-     "build": "tsc -p tsconfig.lib.json"
-  },
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -19,12 +15,19 @@
       "default": "./dist/index.js"
     }
   },
+  "scripts": {
+    "build": "tsc -p tsconfig.lib.json"
+  },
   "dependencies": {
-    "@hey-api/client-fetch": "^0.12.0",
+    "@hk/course-pub": "workspace:*",
     "tslib": "^2.3.0",
-    "zod": "^3.25.56"
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
-    "@hey-api/openapi-ts": "^0.71.1"
+    "@jest/globals": "30.0.0-beta.3",
+    "@types/jest": "^29.5.12",
+    "@types/uuid": "^9.0.8",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.2"
   }
 }

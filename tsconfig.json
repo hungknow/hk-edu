@@ -11,6 +11,18 @@
     },
     {
       "path": "./packages/course-restapi"
+    },
+    {
+      "path": "./packages/course-nosql-persistence"
+    },
+    {
+      "path": "./packages/block-editor-pub"
+    },
+    {
+      "path": "./packages/block-editor"
+    },
+    {
+      "path": "./packages/course"
     }
   ]
 }

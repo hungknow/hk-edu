@@ -7,19 +7,12 @@
     "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo",
     "emitDeclarationOnly": false,
     "forceConsistentCasingInFileNames": true,
-    "types": ["node"]
+    "types": ["node", "jest"]
   },
   "include": ["src/**/*.ts"],
   "references": [
     {
-      "path": "../course-restapi-pub/tsconfig.lib.json"
-    },
-    {
       "path": "../course-pub/tsconfig.lib.json"
-    },
-    {
-      "path": "../course/tsconfig.lib.json"
     }
-  ],
-  "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"]
+  ]
 }
