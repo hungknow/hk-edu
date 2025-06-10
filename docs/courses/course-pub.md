@@ -13,7 +13,24 @@ course-pub
       |- lesson.ts          // Define the typescript interfaces for Lesson
 ```
 
-The interface of actions follow the meanings and rules declared in @actionPattern.md
+The interface of actions follow the meanings and rules declared in [actionPattern.md](../actionPattern.md)
+
+## Model
+The model is defined by using `zod`.
+
+```typescript
+import { z } from "zod";
+
+export const zCourse = z.object({
+  id: z.string(),
+  name: z.string(),
+  title: z.string(),
+});
+
+export type Course = z.infer<typeof zCourse>;
+```
+
+List of actions interface can be refer
 
 ## Notes
 - This package doesn't depend on the following libraries

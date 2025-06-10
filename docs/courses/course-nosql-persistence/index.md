@@ -1,7 +1,24 @@
 
 # Persistence
 
-Reference the definition of NoSQL from [document](../../mongodb/index.md)
+Reference the definition of NoSQL entities from [document](../../mongodb/index.md)
+
+## File structure
+
+```
+course-nosql-persistence
+|- src
+   |- entities
+      |- index.ts
+      |- course.ts
+   |- actions
+      |- index.ts
+      |- course
+         |- index.ts
+         |- CreateCourseEntity.ts
+         |- GetCourseEntityByID.ts
+         |- AddLessonEntityToCourseEntity.ts
+```
 
 ## MongoDB
 - `courses`
