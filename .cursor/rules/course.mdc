@@ -1,0 +1,16 @@
+---
+description: 
+globs: packages/course/**/*
+alwaysApply: false
+---
+## File structure
+
+```
+course
+|- src
+   |- actions               // Include all actions defined for course
+      |- index.ts           // Export all actions define in other files and folders
+      |- CreateCourse.ts    // Implement the CreateCourse interface defined in `course-pub` package
+```
+
+The interface of actions follow the meanings and rules declared in [actionPattern.md](mdc:docs/actionPattern.md)
