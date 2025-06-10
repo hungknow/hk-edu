@@ -1,9 +1,9 @@
-import { Course, CoursePostRequest, CourseList } from '../models/course';
+import { Course } from '../models/course';
 
 export interface CreateCourse {
-  (payload: CoursePostRequest): Promise<Course>;
+    (course: { title: string; description: string; }): Promise<Course>;
 }
 
 export interface GetCourses {
-  (): Promise<CourseList>;
+    (): Promise<Course[]>;
 }

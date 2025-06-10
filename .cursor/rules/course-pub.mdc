@@ -1,6 +1,6 @@
 ---
-description: 
-globs: packages/course-pub/**/*
+description: When creating/updating files and folder in `course-pub` package, read this rule
+globs: 
 alwaysApply: false
 ---
 When creating new file or folder in package `course-pub`, referencing the file structure in file [course-pub.md](mdc:docs/courses/course-pub.md)

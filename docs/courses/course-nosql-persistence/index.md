@@ -1,7 +1,8 @@
 
 # Persistence
 
-Reference the definition of NoSQL entities from [document](../../mongodb/index.md)
+Reference the definition of NoSQL entities from [document](../../mongodb/index.md) [document](mdc:docs/mongodb/index.md)
+Use MongoDB to store the entity. Not memory repository.
 
 ## File structure
 
@@ -10,14 +11,14 @@ course-nosql-persistence
 |- src
    |- entities
       |- index.ts
-      |- course.ts
+      |- course.ts          // Define all entities for course
    |- actions
       |- index.ts
       |- course
          |- index.ts
-         |- CreateCourseEntity.ts
-         |- GetCourseEntityByID.ts
-         |- AddLessonEntityToCourseEntity.ts
+         |- createCourseEntity.ts
+         |- getCourseEntityByID.ts
+         |- addLessonEntityToCourseEntity.ts
 ```
 
 ## MongoDB
@@ -49,3 +50,7 @@ course-nosql-persistence
         }
     }
     ```
+
+## Notes
+- `course-nosql-persistence` package cannot depend on other `-pub` packages. It defines its own models and entities.
+- **Must** `Entity` as the suffix for entity interfaces. Not adding other text, e.g. "Schema"

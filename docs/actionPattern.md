@@ -67,25 +67,20 @@ export interface CreateLesson {
     (initialLesson: Lesson): Promise<void>;
 }
 
-// Implement the action
+// Implement the action. The first letter of name must be in lowercase.
 export const createLesson: CreateLesson = async (initialLesson) => {
     // Use the action directly. Jest can mock `notifySystem`
     await notifySystem('parameter1')
 };
 ```
 
-
 ## Best Practices
 
 1. **Naming Conventions**
    - Use verb-noun combinations for action names
    - Be descriptive and specific
-   - Example: `CreateCourse`, `AddLessonToCourse`, `UpdateTitleOfCourse`
-
-2. **Type Definition**
-   - Define clear input and output types
-   - Use TypeScript's built-in utility types when appropriate
-   - Consider making immutable types using `readonly`
+   - Example for Action interface: `CreateCourse`, `AddLessonToCourse`, `UpdateTitleOfCourse`
+   - For the implementation function of action interface, the first letter **must** be in lowercase, e.g. `createCourse`, `addLessonToCourse`.
 
 ## Testing
 
