@@ -1,8 +1,8 @@
 import { FastifyInstance} from 'fastify';
 
-import { createCourseHandler, getCoursesHandler } from './handlers';
+import { postCoursesHandler, getCoursesHandler } from './handlers';
 
 export async function courseRoutes(fastify: FastifyInstance) {
-  fastify.post('/v1/courses', createCourseHandler);
+  fastify.post('/v1/courses', postCoursesHandler);
   fastify.get('/v1/courses', getCoursesHandler);
 }

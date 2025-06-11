@@ -1,2 +1,2 @@
-export * from './createCourse'
+export * from './postCourses'
 export * from './getCourses'
