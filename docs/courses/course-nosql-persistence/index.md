@@ -4,6 +4,8 @@
 Reference the definition of NoSQL entities from [document](../../mongodb/index.md) [document](mdc:docs/mongodb/index.md)
 Use MongoDB to store the entity. Not memory repository.
 
+Providing the list of action
+
 ## File structure
 
 ```
@@ -14,11 +16,9 @@ course-nosql-persistence
       |- course.ts          // Define all entities for course
    |- actions
       |- index.ts
-      |- course
-         |- index.ts
-         |- createCourseEntity.ts
-         |- getCourseEntityByID.ts
-         |- addLessonEntityToCourseEntity.ts
+      |- createCourseEntity.ts   // Implement the action `CreateCourseEntity`
+      |- getCourseEntityByID.ts
+      |- addLessonEntityToCourseEntity.ts
 ```
 
 ## MongoDB

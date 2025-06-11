@@ -8,9 +8,11 @@
     "build": "tsc -p tsconfig.lib.json"
   },
   "dependencies": {
+    "@types/config": "^3.3.5",
+    "config": "^4.0.0",
     "mongodb": "^6.17.0",
     "tslib": "^2.3.0",
-    "zod": "^3.25.56",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "zod": "^3.25.56"
   }
 }
