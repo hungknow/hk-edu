@@ -8,12 +8,6 @@ export const zCourse = z.object({
 
 export type Course = z.infer<typeof zCourse>;
 
-// As per docs/courses/course-pub.md, these are interfaces, not Zod schemas
-export interface CoursePostRequest {
-  name: string;
-  description: string;
-}
-
 export interface CourseList extends Array<Course> {}
 
 export interface CourseDetail extends Course {

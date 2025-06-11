@@ -7,11 +7,11 @@
     "noImplicitOverride": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "allowSyntheticDefaultImports": true
+    "noPropertyAccessFromIndexSignature": true
   },
   "files": [],
-  "include": [],
+  "include": ["src/**/*.ts", "config/*.d.ts"],
+  "exclude": ["node_modules", "dist", "src/**/*.spec.ts", "src/**/*.test.ts"],
   "references": [
     {
       "path": "./tsconfig.lib.json"

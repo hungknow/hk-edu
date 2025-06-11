@@ -147,3 +147,7 @@ vitest.config.*.timestamp*
 test-output
 
 .DS_Store
+
+# Temporarily ignore the packages
+packages/block-editor/
+packages/block-editor-pub/

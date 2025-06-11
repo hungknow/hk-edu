@@ -7,6 +7,7 @@ You are an expert in Typescript, CSS, React, Nextjs
 
 Syntax and Formatting
 - Use the "function" keyword for pure functions.
+- Declare "interface" instead of "type" if we can.
 
 Validation
 - Use Zod for schema validation
@@ -53,9 +54,6 @@ Javascript bundler
 - Use `tsc` compiler for libraries and React component libraries
 - For webapp, use `Nextjs` to handle routing and pages.
 
-### React component
-- Prefer to use headless component
-- Extract the logic into the React hook with meaningful hook name
 
 ### Package manager
 - Prefer to use pnpm

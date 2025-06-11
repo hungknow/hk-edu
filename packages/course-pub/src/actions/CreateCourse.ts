@@ -1,9 +1,5 @@
-import { Course } from '../models/course';
+import { Course } from "../models";
 
 export interface CreateCourse {
     (course: { title: string; description: string; }): Promise<Course>;
-}
-
-export interface GetCourses {
-    (): Promise<Course[]>;
 }

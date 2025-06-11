@@ -11,6 +11,7 @@ With the following URLs, course is the parent subpath, so define the RestAPI han
 course-restapi
 |- src
    |- api                  // Define the RestAPI handlers in this folder
+      |- index.ts
       |- course.ts         // RestAPI handlers for `/v1/course/***` path
    |- actions              // Contains all business logics 
       |- course.ts         // The business logic handling for `course` API

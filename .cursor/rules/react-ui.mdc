@@ -1,0 +1,14 @@
+---
+description: When generating code for React, read this file
+globs: 
+alwaysApply: false
+---
+UI and Styling
+- Use semantic HTML for meaningful structure.
+- Design with mobile-first, responsive principles for flexibility across devices.
+- Ensure full keyboard navigation support.
+- Use TailwindCSS for Styling
+
+### React component
+- Prefer to use headless component
+- Extract the logic into the React hook with meaningful hook name

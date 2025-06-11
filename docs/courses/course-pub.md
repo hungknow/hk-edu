@@ -6,8 +6,9 @@ Define the domain objects for `course`.
 course-pub
 |- src
    |- actions
-      |- course.ts          // Define the Action interfaces for Course as the main subject
-      |- lesson.ts          // Define the Action interfaces for Lesson as the main subject
+      |- index.ts           // Export all files
+      |- CreateCourse.ts    // Define the Action interface for `CreateCourse`
+      |- GetCourses.ts      // Define the Action interface for `GetCourses`
    |- models                // Define the models of `course` application. The models will be used by `course` and `course-restapi` packages
       |- course.ts          // Define the model Typescript interfaces for Course
       |- lesson.ts          // Define the model typescript interfaces for Lesson
@@ -40,3 +41,6 @@ List of actions interface can be refer
 - This package **must not** depend on the following libraries
     - `@hk/course-restapi-pub`
 - The models of package `@hk/course-pub` must be defined in the package `@hk/course-pub`.
+
+### References for AI models
+- [`actionPattern.md`](mdc:/docs/actionPattern.md)

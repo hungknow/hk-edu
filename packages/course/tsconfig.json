@@ -7,6 +7,9 @@
       "path": "../course-pub"
     },
     {
+      "path": "../course-nosql-persistence"
+    },
+    {
       "path": "./tsconfig.lib.json"
     }
   ]

@@ -1,13 +1,17 @@
 {
-  "extends": "./tsconfig.json",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "outDir": "../../dist/out-tsc",
-    "declaration": true,
-    "types": ["node"],
-    "paths": {
-      "@hk/course-restapi-pub/*": ["../../course-restapi-pub/src/*"]
-    }
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "outDir": "./dist",
+    "rootDir": "src",
+    "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo"
   },
-  "include": ["src/**/*.ts", "config/**/*.d.ts"],
-  "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"]
+  "include": [],
+  "exclude": [],
+  "references": [
+    {
+      "path": "../course-pub"
+    }
+  ]
 }

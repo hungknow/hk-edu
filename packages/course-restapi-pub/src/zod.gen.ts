@@ -16,8 +16,8 @@ export const zCourse = z.object({
 export const zCourseList = z.array(zCourse);
 
 export const zCoursePostRequest = z.object({
-    title: z.string().optional(),
-    description: z.string().optional()
+    title: z.string(),
+    description: z.string()
 });
 
 /**

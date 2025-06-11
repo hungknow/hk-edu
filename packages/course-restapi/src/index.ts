@@ -1,39 +1,41 @@
 import Fastify from 'fastify';
+import { courseRoutes } from './routes';
+import { ZodError } from 'zod';
 
-import { lessonRoutes } from './api/lesson';
-import { courseRoutes } from './api/course';
+const fastify = Fastify({ logger: true });
 
+// Add global error handler
+fastify.setErrorHandler((error, request, reply) => {
+  // Log the error
+  fastify.log.error(error);
 
-const fastify = Fastify({
-  logger: true
+  // Handle validation errors (from Zod)
+  if (error instanceof ZodError) {
+    return reply.status(400).send({
+      statusCode: 400,
+      error: 'Bad Request',
+      message: 'Invalid request body',
+      details: error.errors
+    });
+  }
+
+  // Handle other errors
+  return reply.status(500).send({
+    statusCode: 500,
+    error: 'Internal Server Error',
+    message: 'An unexpected error occurred'
+  });
 });
 
+fastify.register(courseRoutes);
 
-// Register lesson routes
-// TODO: Replace with actual lesson service implementation
-const mockLessonService = {
-  getLessonById: async (id: string) => ({ id, title: `Lesson ${id}`, status: 'default', courseId: '1', order: 0, createdAt: new Date(), updatedAt: new Date() }),
-  getLessonsByCourseId: async (courseId: string) => [],
-  createLesson: async (lesson: any) => ({ ...lesson, id: 'new-lesson', createdAt: new Date(), updatedAt: new Date() }),
-  updateLesson: async (id: string, lesson: any) => ({ id, title: `Lesson ${id}`, status: 'default', courseId: '1', order: 0, createdAt: new Date(), updatedAt: new Date(), ...lesson }),
-  deleteLesson: async (id: string) => {},
-};
-
-fastify.register(lessonRoutes, { lessonService: mockLessonService });
-
-// Register all route handlers
-async function start() {
+const start = async () => {
   try {
-    // Register routes
-    await fastify.register(courseRoutes);
-    await fastify.register(lessonRoutes);
-
-    // Start the server
     await fastify.listen({ port: 3000 });
   } catch (err) {
     fastify.log.error(err);
     process.exit(1);
   }
-}
+};
 
-start();
+start(); 

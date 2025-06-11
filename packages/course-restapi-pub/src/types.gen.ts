@@ -11,11 +11,11 @@ export type CoursePostRequest = {
     /**
      * The title of the course
      */
-    title?: string;
+    title: string;
     /**
      * A detailed description of the course
      */
-    description?: string;
+    description: string;
 };
 
 export type Course = {

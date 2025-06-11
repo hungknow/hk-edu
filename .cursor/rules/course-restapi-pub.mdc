@@ -1,5 +1,5 @@
 ---
-description: When creating/updating files and folder in folder `packages/course-restapi-pub`, read this rule
+description: When creating/updating content, files and folder in folder `packages/course-restapi-pub`, read this rule
 globs: 
 alwaysApply: false
 ---

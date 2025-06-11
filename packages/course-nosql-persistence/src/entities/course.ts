@@ -6,6 +6,7 @@ export const zCourseEntity = z.object({
   _id: z.instanceof(ObjectId),
   name: z.string(),
   title: z.string(),
+  description: z.string(),
 });
 
 export type CourseEntity = z.infer<typeof zCourseEntity>;

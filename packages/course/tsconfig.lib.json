@@ -13,6 +13,9 @@
   "references": [
     {
       "path": "../course-pub/tsconfig.lib.json"
+    },
+    {
+      "path": "../course-nosql-persistence/tsconfig.lib.json"
     }
   ]
 }
