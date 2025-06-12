@@ -10,7 +10,8 @@
     "dev": "tsup src/index.ts --watch",
     "watchdeps": "nx watch -p @hk/course-restapi --includeDependentProjects -- nx run-many -t build -p \\$NX_PROJECT_NAME --exclude=@hk/course-restapi",
     "test:integration": "playwright test integration.test.ts",
-    "start": "node --enable-source-maps dist/index.cjs.js"
+    "start": "node --enable-source-maps dist/index.cjs.js",
+    "test": "exit 0"
   },
   "dependencies": {
     "@fastify/cors": "^8.0.0",
