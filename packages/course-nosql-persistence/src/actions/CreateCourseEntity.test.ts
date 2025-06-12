@@ -2,15 +2,12 @@ import { describe, expect, it, beforeEach, afterEach, vitest, Mock } from 'vites
 import { Collection, Db, ObjectId } from "mongodb";
 import { buildCreateCourseEntity, CreateCourseEntity } from "./createCourseEntity";
 import { CourseEntity } from "../entities/course";
-import { buildGetCourseDB, GetCourseDB } from ".";
-import { GetMongoClient } from "./getMongoClient";
-import { IMongoConfig } from '../config.types';
+import { GetCourseDB } from "./getCourseDB";
 
 describe("CreateCourseEntity", () => {
     let mockCollection: Collection<CourseEntity>;
     let mockDb: Db;
     let createCourseEntity: CreateCourseEntity;
-    let mockGetMongoClient: GetMongoClient;
     let mockGetCourseDB: GetCourseDB;
 
     beforeEach(() => {
@@ -22,18 +19,6 @@ describe("CreateCourseEntity", () => {
             collection: vitest.fn(() => mockCollection),
         } as unknown as Db;
 
-        // Mock getMongoClient to return a client with the mocked db
-        mockGetMongoClient = vitest.fn().mockResolvedValue({ db: () => mockDb });
-
-        const courseMongoDBCredentials: IMongoConfig = {
-            protocol: '',
-            host: '',
-            port: 10,
-            dbName: '',
-            user: '',
-            pass: '',
-            params: '',
-        }
         // Mock getCourseDB to return the mocked database instance for createCourseEntity
         mockGetCourseDB = vitest.fn().mockResolvedValue(mockDb);
 
