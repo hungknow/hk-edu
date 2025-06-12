@@ -43,4 +43,4 @@ List of actions interface can be refer
 - The models of package `@hk/course-pub` must be defined in the package `@hk/course-pub`.
 
 ### References for AI models
-- [`actionPattern.md`](mdc:/docs/actionPattern.md)
+- [`actionPattern.md`](mdc:docs/actionPattern.md)

@@ -1,25 +1,31 @@
 import { MongoClient } from "mongodb";
 import config from 'config'
 
-let cachedMongoClient: MongoClient | null = null;
+export interface GetMongoClient {
+    (): Promise<MongoClient> 
+}
 
-export async function getMongoClient(): Promise<MongoClient> {
-    if (cachedMongoClient) {
-        return cachedMongoClient;
+export function buildGetMongoClient(config: config.IMongoConfig): GetMongoClient {
+    let cachedMongoClient: MongoClient | null = null;
+
+    return async () => {
+        if (cachedMongoClient) {
+            return cachedMongoClient;
+        }
+    
+        const {
+            host,
+            port,
+            dbName,
+            user,
+            pass,
+        } = config;
+    
+        const uri = `mongodb://${user}:${pass}@${host}:${port}/${dbName}`;
+    
+        const client = new MongoClient(uri);
+        await client.connect();
+        cachedMongoClient = client;
+        return client;
     }
-
-    const {
-        host,
-        port,
-        dbName,
-        user,
-        pass,
-    } = config.mongodb;
-
-    const uri = `mongodb://${user}:${pass}@${host}:${port}/${dbName}`;
-
-    const client = new MongoClient(uri);
-    await client.connect();
-    cachedMongoClient = client;
-    return client;
 }

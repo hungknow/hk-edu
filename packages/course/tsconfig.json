@@ -1,16 +1,5 @@
 {
   "extends": "../../tsconfig.base.json",
   "files": [],
-  "include": [],
-  "references": [
-    {
-      "path": "../course-pub"
-    },
-    {
-      "path": "../course-nosql-persistence"
-    },
-    {
-      "path": "./tsconfig.lib.json"
-    }
-  ]
+  "include": []
 }

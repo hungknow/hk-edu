@@ -2,19 +2,41 @@
   "name": "@hk/course-nosql-persistence",
   "version": "0.0.1",
   "private": true,
-  "main": "./dist/index.js",
+  "type": "module",
+  "files": ["dist"],
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs.js",
+      "default": "./cjs/index.cjs.js"
+    },
+    "./test-utils": {
+      "types": "./dist/test-utils/index.d.ts",
+      "import": "./dist/test-utils/index.esm.js",
+      "require": "./dist/test-utils/index.cjs.js",
+      "default": "./dist/test-utils/index.cjs.js"
+    }
+  },
   "scripts": {
-    "build": "tsc -p tsconfig.lib.json"
+    "build": "tsup && tsc --emitDeclarationOnly --declaration",
+    "clean": "rimraf dist"
   },
   "dependencies": {
     "config": "^4.0.0",
     "mongodb": "^6.17.0",
+    "rimraf": "^6.0.1",
     "tslib": "^2.3.0",
     "uuid": "^9.0.0",
     "zod": "^3.25.56"
   },
   "devDependencies": {
-    "@types/config": "^3.3.5"
+    "@types/config": "^3.3.5",
+    "esbuild": "^0.20.0",
+    "typescript": "^5.0.0",
+    "tsup": "^8.0.0"
   }
 }

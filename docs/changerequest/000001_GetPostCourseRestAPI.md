@@ -28,13 +28,7 @@ Define new actions which are necessary for RestAPI handler
 - Add mock test for actions in `course` package
 
 ### Integration tests
-- Add integrations tests for RestAPI in `course-restapi` package
-
-#### List of test cases
-- Post the new course
-- Get list of courses. Confirm there are one course and the course's data are valid
-- Post another new course
-- Get list of courses. Confirm there are two courses and their data are valid
+- Create [`CrudCourse`](mdc:docs/courses/course-integration-test.md) in `course/tests/CrudCourse.test.ts` file
 
 ### Reference for AI models:
 - [openapi.yaml](mdc:src/packages/course-restapi-pub/openapi.yaml)

@@ -14,7 +14,7 @@ course
       |- CreateCourse.test.ts // Unit test for `CreateCourse.ts` file
 |- tests                    // Integration tests
    |- actions
-      |- CreateCourse.test.ts // Integration test
+      |- CrudCourse.test.ts // Integration test for use case `crud course`
 ```
 
 The interface of actions follow the meanings and rules declared in [actionPattern.md](mdc:docs/actionPattern.md)

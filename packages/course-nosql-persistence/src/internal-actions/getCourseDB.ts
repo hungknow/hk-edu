@@ -1,14 +1,21 @@
-import { Db } from "mongodb";
-import { getMongoClient } from "./getMongoClient";
-import config from 'config';
+import type { Db } from "mongodb";
+import type { GetMongoClient } from "./getMongoClient";
 
-let db: Db | null = null;
+export interface GetCourseDB {
+    (): Promise<Db>
+}
 
-export async function getCourseDB(): Promise<Db> {
-    if (!db) {
-        const client = await getMongoClient();
-        db = client.db(config.mongodb.dbName);
+export function buildGetCourseDB(getMongoClient: GetMongoClient, dbName: string): GetCourseDB {
+    let db: Db | null = null;
+
+    return async () => {
+        if (!db) {
+            const client = await getMongoClient();
+            const newDb: Db = client.db(dbName);
+            db = newDb
+            return newDb
+        }
+
+        return db;
     }
-
-    return db;
 }

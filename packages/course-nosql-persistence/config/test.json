@@ -1,0 +1,9 @@
+{
+  "testMongoDB": {
+    "host": "test1.n5yonnw.mongodb.net",
+    "port": 27017,
+    "user": "hung",
+    "pass": "testpassword",
+    "params": "retryWrites=true&w=majority&appName=Test1"
+  }
+} 

@@ -9,13 +9,5 @@
     "forceConsistentCasingInFileNames": true,
     "types": ["node", "jest"]
   },
-  "include": ["src/**/*.ts"],
-  "references": [
-    {
-      "path": "../course-pub/tsconfig.lib.json"
-    },
-    {
-      "path": "../course-nosql-persistence/tsconfig.lib.json"
-    }
-  ]
+  "include": ["src/**/*.ts"]
 }

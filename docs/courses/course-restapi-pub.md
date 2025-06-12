@@ -33,7 +33,7 @@ The above command line generates file
 - [`zod.gen.ts`](../../packages/course-restapi-pub/src/zod.gen.ts): The Zod interfaces define for all request/response models
 
 ## Reference for AI model
-- [`types.gen.ts`](mdc:/packages/course-restapi-pub/src/types.gen.ts)
-- [`sdk.gen.ts`](mdc:/packages/course-restapi-pub/src/sdk.gen.ts)
-- [`zod.gen.ts`](mdc:/packages/course-restapi-pub/src/zod.gen.ts)
-- [`actionPattern.md`](mdc:/docs/actionPattern.md)
+- [`types.gen.ts`](mdc:packages/course-restapi-pub/src/types.gen.ts)
+- [`sdk.gen.ts`](mdc:packages/course-restapi-pub/src/sdk.gen.ts)
+- [`zod.gen.ts`](mdc:packages/course-restapi-pub/src/zod.gen.ts)
+- [`actionPattern.md`](mdc:docs/actionPattern.md)

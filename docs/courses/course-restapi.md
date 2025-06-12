@@ -28,4 +28,4 @@ Don't define the RestAPI request/response model in the package `course-restapi`.
 - Unit tests are written in the same folder as the source code file
 
 ### Reference for AI model
-- [`course-restapi-pub`](mdc:/packages/course-restapi-pub)
+- [`course-restapi-pub`](mdc:packages/course-restapi-pub)
