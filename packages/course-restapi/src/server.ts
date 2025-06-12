@@ -34,7 +34,7 @@ export async function createServer(): Promise<FastifyInstance> {
         });
     });
 
-    let container = createContainer()
+    const container = createContainer()
 
     server.register(cors, {
         origin: '*',

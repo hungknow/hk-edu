@@ -144,6 +144,10 @@ importers:
       zod:
         specifier: ^3.25.56
         version: 3.25.57
+    devDependencies:
+      tsup:
+        specifier: ^8.0.0
+        version: 8.5.0(@swc/core@1.5.29)(typescript@5.7.3)
 
   packages/course-pub:
     dependencies:

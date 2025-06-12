@@ -8,8 +8,6 @@ export const zCourse = z.object({
 
 export type Course = z.infer<typeof zCourse>;
 
-export interface CourseList extends Array<Course> {}
-
 export interface CourseDetail extends Course {
   lessons: Array<{
     lesson_id: string;
