@@ -19,6 +19,14 @@ jobs:
           filter: tree:0
           fetch-depth: 0
 
+      - name: Restore Nx Cache
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            ${{ github.workspace }}/.nx
+            !${{ github.workspace }}/.nx/workspace-data/d
+          key: nx-caches-v1-${{ env.NX_BASE }}
+
       - uses: pnpm/action-setup@v4
         name: Install pnpm
         with:
@@ -52,3 +60,12 @@ jobs:
       # - run: pnpm exec nx-cloud record -- echo Hello World
       # Nx Affected runs only tasks affected by the changes in this PR/commit. Learn more: https://nx.dev/ci/features/affected
       - run: pnpm exec nx affected -t lint test build
+
+      - name: Save Nx Cache
+        if: github.ref == 'refs/heads/main'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            ${{ github.workspace }}/.nx
+            !${{ github.workspace }}/.nx/workspace-data/d
+          key: nx-caches-v1-${{ github.sha }}
