@@ -1,11 +1,10 @@
+import { describe, expect, it, beforeEach, afterEach, vitest, Mock } from 'vitest';
 import { Collection, Db, ObjectId } from "mongodb";
-import { buildCreateCourseEntity, CreateCourseEntity } from "../../src/actions/createCourseEntity";
-import { CourseEntity } from "../../src/entities/course";
-import { buildGetCourseDB, GetCourseDB } from "../../src/internal-actions/getCourseDB";
-import { GetMongoClient } from "../../src/internal-actions/getMongoClient";
-
-// We are mocking buildGetCourseDB, so it's not strictly necessary to mock the entire internal-actions module.
-// jest.mock("../../src/internal-actions");
+import { buildCreateCourseEntity, CreateCourseEntity } from "./createCourseEntity";
+import { CourseEntity } from "../entities/course";
+import { buildGetCourseDB, GetCourseDB } from ".";
+import { GetMongoClient } from "./getMongoClient";
+import { IMongoConfig } from '../config.types';
 
 describe("CreateCourseEntity", () => {
     let mockCollection: Collection<CourseEntity>;
@@ -16,28 +15,37 @@ describe("CreateCourseEntity", () => {
 
     beforeEach(() => {
         mockCollection = {
-            insertOne: jest.fn(),
+            insertOne: vitest.fn(),
         } as unknown as Collection<CourseEntity>;
 
         mockDb = {
-            collection: jest.fn(() => mockCollection),
+            collection: vitest.fn(() => mockCollection),
         } as unknown as Db;
 
         // Mock getMongoClient to return a client with the mocked db
-        mockGetMongoClient = jest.fn().mockResolvedValue({ db: () => mockDb });
+        mockGetMongoClient = vitest.fn().mockResolvedValue({ db: () => mockDb });
 
-        // Build the getCourseDB action with the mocked getMongoClient
-        mockGetCourseDB = buildGetCourseDB(mockGetMongoClient, "test_db");
+        const courseMongoDBCredentials: IMongoConfig = {
+            protocol: '',
+            host: '',
+            port: 10,
+            dbName: '',
+            user: '',
+            pass: '',
+            params: '',
+        }
+        // Mock getCourseDB to return the mocked database instance for createCourseEntity
+        mockGetCourseDB = vitest.fn().mockResolvedValue(mockDb);
 
         // Build the createCourseEntity action with the mocked getCourseDB
-        createCourseEntity = buildCreateCourseEntity(mockGetCourseDB);
+        createCourseEntity = buildCreateCourseEntity({ getCourseDB: mockGetCourseDB });
 
         // Ensure collection.insertOne returns an object with acknowledged and insertedId
-        (mockCollection.insertOne as jest.Mock).mockResolvedValue({ acknowledged: true, insertedId: new ObjectId() });
+        (mockCollection.insertOne as Mock).mockResolvedValue({ acknowledged: true, insertedId: new ObjectId() });
     });
 
     afterEach(() => {
-        jest.restoreAllMocks();
+        vitest.restoreAllMocks();
     });
 
     it("should create a course entity and return it", async () => {
@@ -53,7 +61,7 @@ describe("CreateCourseEntity", () => {
         };
 
         const insertedId = new ObjectId();
-        (mockCollection.insertOne as jest.Mock).mockResolvedValue({ acknowledged: true, insertedId });
+        (mockCollection.insertOne as Mock).mockResolvedValue({ acknowledged: true, insertedId });
 
         // Act
         const result = await createCourseEntity(courseInput);
@@ -77,7 +85,7 @@ describe("CreateCourseEntity", () => {
             description: "Test Description",
         };
 
-        (mockCollection.insertOne as jest.Mock).mockResolvedValue({
+        (mockCollection.insertOne as Mock).mockResolvedValue({
             acknowledged: false,
             insertedId: undefined,
         });
@@ -94,7 +102,7 @@ describe("CreateCourseEntity", () => {
         };
 
         const mockError = new Error("MongoDB connection error");
-        (mockCollection.insertOne as jest.Mock).mockRejectedValue(mockError);
+        (mockCollection.insertOne as Mock).mockRejectedValue(mockError);
 
         // Act & Assert
         await expect(createCourseEntity(courseInput)).rejects.toThrow(mockError);

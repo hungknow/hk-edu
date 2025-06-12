@@ -6,6 +6,6 @@ import type { IMongoConfig } from '../src/config.types'
 declare module 'config' {
     // Declare the type of `config` variable
     interface IConfig {
-        courseDBMongo: IMongoConfig       // Declare the mongodb variable in `config` variable
+        mongodb: IMongoConfig       // Declare the mongodb variable in `config` variable
     }
 } 

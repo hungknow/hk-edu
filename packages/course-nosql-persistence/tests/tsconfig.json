@@ -1,15 +1,11 @@
 {
-  "extends": "../tsconfig.json",
+  "extends": "../../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
-    "module": "commonjs",
-    "moduleResolution": "node16",
     "types": ["jest", "node"]
   },
   "include": [
-    "jest.config.ts",
-    "src/**/*.test.ts",
-    "src/**/*.spec.ts",
-    "src/**/*.d.ts"
-  ]
+    "./**/*",
+    "../config/**.d.ts"
+, "../src/actions/CreateCourseEntity.test.ts"  ]
 }
