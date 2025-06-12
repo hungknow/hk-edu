@@ -1,12 +1,16 @@
 import type { Collection } from "mongodb";
 import { CourseEntity } from '../entities/course';
-import type { GetCourseDB } from "../internal-actions";
+import type { GetCourseDB } from "./getCourseDB";
 
 export interface GetCourseEntities {
     (): Promise<CourseEntity[]>
 }
 
-export function buildGetCourseEntities(getCourseDB: GetCourseDB): GetCourseEntities {
+export interface BuildGetCourseEntitiesParams {
+    getCourseDB: GetCourseDB;
+}
+
+export function buildGetCourseEntities({ getCourseDB }: BuildGetCourseEntitiesParams): GetCourseEntities {
     return async (): Promise<CourseEntity[]> => {
         const db = await getCourseDB();
         const collection: Collection<CourseEntity> = db.collection("courses");

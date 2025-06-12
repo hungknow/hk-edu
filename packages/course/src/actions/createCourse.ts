@@ -1,7 +1,11 @@
 import type { CreateCourse } from '@hk/course-pub';
 import type { CreateCourseEntity } from '@hk/course-nosql-persistence';
 
-export function buildCreateCourse(createCourseEntity: CreateCourseEntity): CreateCourse {
+export interface BuildCreateCourseParams {
+  createCourseEntity: CreateCourseEntity;
+}
+
+export function buildCreateCourse({ createCourseEntity }: BuildCreateCourseParams): CreateCourse {
   return async (courseData) => {
     const createdEntity = await createCourseEntity({
       title: courseData.title,

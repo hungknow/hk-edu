@@ -2,7 +2,11 @@ import type { GetCourses } from '@hk/course-pub';
 import { GetCourseEntities } from '@hk/course-nosql-persistence';
 import type { CourseEntity } from '@hk/course-nosql-persistence/src/entities';
 
-export function buildGetCourses(getCourseEntities: GetCourseEntities): GetCourses {
+export interface BuildGetCoursesParams {
+  getCourseEntities: GetCourseEntities;
+}
+
+export function buildGetCourses({ getCourseEntities }: BuildGetCoursesParams): GetCourses {
   return async () => {
     const courseEntities = await getCourseEntities();
     return courseEntities.map((entity: CourseEntity) => ({

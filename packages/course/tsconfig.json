@@ -1,5 +1,11 @@
 {
   "extends": "../../tsconfig.base.json",
-  "files": [],
-  "include": []
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": "src",
+    "outDir": "dist",
+    "emitDeclarationOnly": false,
+    "forceConsistentCasingInFileNames": true,
+  },
+  "include": ["src/**/*.ts"]
 }

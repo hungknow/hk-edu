@@ -151,3 +151,6 @@ test-output
 # Temporarily ignore the packages
 packages/block-editor/
 packages/block-editor-pub/
+
+config/default.json
+config/local.json

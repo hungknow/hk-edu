@@ -3,25 +3,14 @@
   "version": "1.0.0",
   "description": "Course REST API implementation",
   "private": true,
-  "type": "module",
-  "main": "dist/index.js",
-  "module": "./dist/index.js",
+  "main": "dist/index.cjs.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc -p tsconfig.lib.json",
+    "build": "tsup",
     "test": "jest",
     "test:integration": "playwright test integration.test.ts",
     "dev": "ts-node-dev --respawn src/index.ts",
-    "start": "node dist/index.js"
-  },
-  "exports": {
-    "./package.json": "./package.json",
-    ".": {
-      "development": "./src/index.ts",
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
-    }
+    "start": "node --enable-source-maps dist/index.cjs.js"
   },
   "dependencies": {
     "@fastify/cors": "^8.0.0",
@@ -29,12 +18,15 @@
     "@hk/course-nosql-persistence": "workspace:*",
     "@hk/course-pub": "workspace:*",
     "@hk/course-restapi-pub": "workspace:*",
+    "awilix": "^12.0.5",
+    "config": "^4.0.0",
     "fastify": "^4.0.0",
     "zod": "^3.25.58"
   },
   "devDependencies": {
     "@jest/globals": "^29.0.0",
     "@playwright/test": "^1.42.1",
+    "@types/config": "^3.3.5",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
     "@types/jest": "^29.0.0",
@@ -42,6 +34,7 @@
     "jest": "^29.0.0",
     "ts-jest": "^29.0.0",
     "ts-node-dev": "^2.0.0",
+    "tsup": "^8.0.0",
     "typescript": "^5.0.0"
   }
 }

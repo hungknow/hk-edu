@@ -77,8 +77,14 @@ export interface CreateLesson {
     (initialLesson: Lesson): Promise<void>;
 }
 
-// Implement the action. The first letter of name must be in lowercase.
-export function buildCreateLesson(notifySystem: NotifySystem, dep2: Dep2): CreateLesson {
+export interface BuildCreateLessonParams {
+    notifySystem: NotifySystem
+    dep2: Dep2
+}
+
+// Implement the action.
+// The dependency list **must** be an object. You must define the interface for parameter
+export function buildCreateLesson({ notifySystem, dep2 }: BuildCreateLessonParams): CreateLesson {
     return async (initialLesson) {
         // Use the action directly. Jest can mock `notifySystem`
         const result = await notifySystem('parameter1')

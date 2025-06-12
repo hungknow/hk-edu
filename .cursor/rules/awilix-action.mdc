@@ -1,0 +1,6 @@
+---
+description: After creating a new file `actions` folder, follow the rule
+globs: 
+alwaysApply: false
+---
+Update the code according to the file [awilix.md](mdc:docs/awilix.md)

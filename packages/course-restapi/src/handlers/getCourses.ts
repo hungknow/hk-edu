@@ -1,7 +1,13 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
-import { getCourses } from '@hk/course';
+import type { GetCourses } from '@hk/course-pub';
 
-export async function getCoursesHandler(request: FastifyRequest, reply: FastifyReply) {
-  const courses = await getCourses();
-  reply.status(200).send(courses);
+export interface GetCoursesHandler {
+  (request: FastifyRequest, reply: FastifyReply): Promise<void>
+}
+
+export function buildGetCoursesHandler({ getCourses }: { getCourses: GetCourses }): GetCoursesHandler {
+  return async (request: FastifyRequest, reply: FastifyReply) => {
+    const courses = await getCourses();
+    reply.status(200).send(courses);
+  };
 }

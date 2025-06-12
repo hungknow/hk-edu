@@ -1,9 +1,10 @@
 {
-  "testMongoDB": {
+  "courseDBMongo": {
+    "protocol": "mongodb+srv",
     "host": "test1.n5yonnw.mongodb.net",
-    "port": 27017,
     "user": "hung",
-    "pass": "testpassword",
+    "pass": "Testing123",
+    "dbName": "courses",
     "params": "retryWrites=true&w=majority&appName=Test1"
   }
 } 

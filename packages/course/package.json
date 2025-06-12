@@ -4,34 +4,43 @@
   "description": "Course domain implementation",
   "private": true,
   "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
+  "files": ["dist"],
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
   "exports": {
-    "./package.json": "./package.json",
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.js",
-      "default": "./dist/index.js"
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs.js",
+      "default": "./cjs/index.cjs.js"
+    },
+    "./awilix": {
+      "types": "./dist/awilix.d.ts",
+      "import": "./dist/awilix.esm.js",
+      "require": "./dist/awilix.cjs.js",
+      "default": "./dist/awilix.cjs.js"
     }
   },
   "scripts": {
-    "build": "tsc -p tsconfig.lib.json",
+    "build": "tsup && tsc --emitDeclarationOnly --declaration",
     "test": "vitest run",
     "test:e2e": "vitest run --dir tests"
   },
   "dependencies": {
-    "@hk/course-pub": "workspace:*",
     "@hk/course-nosql-persistence": "workspace:*",
+    "@hk/course-pub": "workspace:*",
     "tslib": "^2.3.0",
     "uuid": "^9.0.1"
+  },
+  "peerDependencies": {
+    "awilix": "^12.0.5"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
     "@types/uuid": "^9.0.8",
+    "tsup": "^8.0.0",
     "typescript": "^5.0.0",
-    "vitest": "^1.0.0",
-    "vite-tsconfig-paths": "^4.0.0"
+    "vitest": "^3.2.3"
   }
 }

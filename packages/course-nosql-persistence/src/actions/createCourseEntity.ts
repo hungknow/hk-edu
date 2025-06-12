@@ -1,12 +1,16 @@
 import type { Collection } from "mongodb";
 import { CourseEntity, zCourseEntity } from "../entities";
-import type { GetCourseDB } from "../internal-actions";
+import type { GetCourseDB } from "./getCourseDB";
 
 export interface CreateCourseEntity {
     (courseData: { title: string; description: string; }): Promise<CourseEntity>
 }
 
-export function buildCreateCourseEntity(getCourseDB: GetCourseDB): CreateCourseEntity {
+export interface BuildCreateCourseEntityParams {
+    getCourseDB: GetCourseDB;
+}
+
+export function buildCreateCourseEntity({ getCourseDB }: BuildCreateCourseEntityParams): CreateCourseEntity {
     return async (courseData: { title: string; description: string; }): Promise<CourseEntity> => {
         // Map description to name as per MongoDB entity definition
         const entityToInsert = {
