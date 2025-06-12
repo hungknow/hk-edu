@@ -30,7 +30,11 @@
     "ts-node": "10.9.1",
     "tslib": "^2.3.0",
     "typescript": "~5.7.2",
-    "typescript-eslint": "^8.19.0"
+    "typescript-eslint": "^8.19.0",
+    "tsup": "^8.0.0",
+    "esbuild": "^0.20.0",
+    "@types/config": "^3.3.5",
+    "vitest": "^3.2.3"
   },
   "pnpm": {
     "overrides": {

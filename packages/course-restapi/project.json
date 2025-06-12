@@ -1,0 +1,10 @@
+{
+    "targets": {
+        "builddeps": {
+            "executor": "nx:noop",
+            "dependsOn": [
+                "^build"
+            ]
+        }
+    }
+}
