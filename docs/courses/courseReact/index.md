@@ -1,4 +1,4 @@
-List of React components
+# List of React components
 
 <!-- ## CourseInfoCard
 Display
@@ -24,10 +24,11 @@ Load the content of lesson, display it.
 ## LessonContentEditor
 Load the content of lesson, user can modify the content and submit. -->
 
-[CourseTree](courses/courseReact/CourseTree.md)
-[LessonTree](courses/courseReact/LessonTree.md)
+- [CourseMenuTree](courses/courseReact/CourseMenuTree.md)
+- [CourseMenuTreeItem](courses/courseReact/CourseMenuTreeItem.md)
 
-[LessonTreeItem](courses/courseReact/LessonTreeItem.md)
+- [LessonTree](courses/courseReact/LessonTree.md)
+- [LessonTreeItem](courses/courseReact/LessonTreeItem.md)
 
 <!-- ## LessonContentHeading
 Display the  -->
