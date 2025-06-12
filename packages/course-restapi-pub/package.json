@@ -3,12 +3,12 @@
   "version": "0.0.1",
   "private": true,
   "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
   "scripts": {
     "openapi-ts": "openapi-ts",
-    "build": "tsc -p tsconfig.lib.json",
+    "build": "tsup",
     "dev": "tsup src/index.ts --watch"
   },
   "exports": {

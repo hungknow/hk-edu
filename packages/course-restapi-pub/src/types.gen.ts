@@ -5,8 +5,6 @@ export type _Error = {
     message?: string;
 };
 
-export type CourseList = Array<Course>;
-
 export type CoursePostRequest = {
     /**
      * The title of the course
@@ -44,7 +42,7 @@ export type GetV1CoursesResponses = {
     /**
      * Successful operation
      */
-    200: CourseList;
+    200: Array<Course>;
 };
 
 export type GetV1CoursesResponse = GetV1CoursesResponses[keyof GetV1CoursesResponses];
