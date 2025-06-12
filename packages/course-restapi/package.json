@@ -7,9 +7,9 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsup",
-    "test": "jest",
+    "dev": "tsup src/index.ts --watch",
+    "watchdeps": "nx watch -p @hk/course-restapi --includeDependentProjects -- nx run-many -t build -p \\$NX_PROJECT_NAME --exclude=@hk/course-restapi",
     "test:integration": "playwright test integration.test.ts",
-    "dev": "ts-node-dev --respawn src/index.ts",
     "start": "node --enable-source-maps dist/index.cjs.js"
   },
   "dependencies": {

@@ -24,6 +24,8 @@
   },
   "scripts": {
     "build": "tsup && tsc --emitDeclarationOnly --declaration",
+    "dev": "tsup src/index.ts --watch",
+    "watchdeps": "nx watch -p @hk/course --includeDependentProjects -- nx run-many -t build -p \\$NX_PROJECT_NAME --exclude=@hk/course",
     "test": "vitest run",
     "test:e2e": "vitest run --dir tests"
   },

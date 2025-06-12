@@ -2,7 +2,7 @@ import type { CreateCourse } from '@hk/course-pub';
 import type { CreateCourseEntity } from '@hk/course-nosql-persistence';
 
 export interface BuildCreateCourseParams {
-  createCourseEntity: CreateCourseEntity;
+  createCourseEntity: CreateCourseEntity; 
 }
 
 export function buildCreateCourse({ createCourseEntity }: BuildCreateCourseParams): CreateCourse {

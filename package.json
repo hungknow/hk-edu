@@ -2,7 +2,9 @@
   "name": "@hk/edu",
   "version": "0.0.1",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "watch-all": "nx watch --all -- nx run \\$NX_PROJECT_NAME:build"
+  },
   "private": true,
   "dependencies": {},
   "devDependencies": {
