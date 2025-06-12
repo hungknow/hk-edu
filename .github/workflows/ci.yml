@@ -40,6 +40,15 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - uses: nrwl/nx-set-shas@v4
 
+      # Must call after nrwl/nx-set-shas@v4
+      - name: Restore Nx Cache
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            ${{ github.workspace }}/.nx
+            !${{ github.workspace }}/.nx/workspace-data/d
+          key: nx-caches-v1-${{ env.NX_BASE }}
+
       - name: Copy environment config file
         shell: bash
         env:
@@ -52,3 +61,12 @@ jobs:
       # - run: pnpm exec nx-cloud record -- echo Hello World
       # Nx Affected runs only tasks affected by the changes in this PR/commit. Learn more: https://nx.dev/ci/features/affected
       - run: pnpm exec nx affected -t lint test build
+
+      - name: Save Nx Cache
+        if: github.ref == 'refs/heads/main'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            ${{ github.workspace }}/.nx
+            !${{ github.workspace }}/.nx/workspace-data/d
+          key: nx-caches-v1-${{ github.sha }}
