@@ -1,7 +1,7 @@
 import { describe, expect, it, beforeAll, afterAll, beforeEach } from 'vitest';
 import { buildCreateCourse, buildGetCourses } from '../src/actions';
 import { buildCreateCourseEntity, buildGetCourseEntities, buildGetCourseDB, buildGetMongoClient } from '@hk/course-nosql-persistence';
-import { createTestMongoDb } from '@hk/course-nosql-persistence/test-utils';
+import { createTestMongoDb } from '@hk/course-nosql-persistence';
 import { CreateCourse, GetCourses } from '@hk/course-pub';
 import config from 'config';
 

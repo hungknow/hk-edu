@@ -4,7 +4,7 @@
     "baseUrl": ".",
     "rootDir": "src",
     "outDir": "dist",
-    "emitDeclarationOnly": false
+    "emitDeclarationOnly": true
   },
   "include": ["src/**/*.ts", "config/*.d.ts"],
   "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"]

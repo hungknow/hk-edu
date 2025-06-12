@@ -4,8 +4,7 @@
     "baseUrl": ".",
     "rootDir": "src",
     "outDir": "dist",
-    "emitDeclarationOnly": false,
-    "forceConsistentCasingInFileNames": true,
+    "emitDeclarationOnly": true
   },
-  "include": ["src/**/*.ts"]
+  "include": ["src/**/*.ts", "config/*.d.ts"]
 }
