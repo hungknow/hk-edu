@@ -8,16 +8,15 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "openapi-ts": "openapi-ts",
-    "build": "tsup",
+    "build": "tsup && tsc --emitDeclarationOnly --declaration",
     "dev": "tsup src/index.ts --watch"
   },
   "exports": {
-    "./package.json": "./package.json",
     ".": {
       "development": "./src/index.ts",
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
+      "import": "./dist/index.esm.js",
+      "default": "./dist/index.cjs.js"
     }
   },
   "dependencies": {
