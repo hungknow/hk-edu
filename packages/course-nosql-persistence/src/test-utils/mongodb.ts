@@ -1,27 +1,40 @@
-import { MongoClient, Db } from 'mongodb';
-import config from 'config';
+import { MongoClient } from 'mongodb';
+import { IMongoConfig } from 'src/config.types';
 
 export interface TestDbConfig {
   describeName: string;
+  mongoDB: IMongoConfig
 }
 
 export class TestMongoDb {
   private client: MongoClient | null = null;
   private dbName: string | null = null;
+  private mongoConnectionInfo: IMongoConfig & {
+    path: string;
+  } | null = null;
 
-  private getMongoUri(): string {
+  private getMongoConnectionInfo(mongoDB: IMongoConfig): (IMongoConfig & { path: string }) {
     // Use 'any' to avoid type constraint issues
-    const { host, port, user, pass, params } = config.testMongoDB;
-    let path = `mongodb://${user}:${pass}@${host}:${port}`;
+    const { protocol, host, port, user, pass, params } = mongoDB;
+    let path = `${protocol || "mongodb"}://${user}:${pass}@${host}${port ? `:${port}` : ''}`;
 
     if (params) {
       path = `${path}?${params}`
     }
 
-    return path
+    return {
+      ...mongoDB,
+      path,
+    }
   }
 
-  async setup({ describeName }: TestDbConfig) {
+  async getDBInfo({ describeName, mongoDB }: TestDbConfig) {
+    if (this.mongoConnectionInfo && this.dbName) {
+      return {
+        ...this.mongoConnectionInfo,
+        dbName: this.dbName
+      };
+    }
     // Generate a random number between 1 and 9999
     const randomNum = Math.floor(Math.random() * 9999) + 1;
     // Format the number to be 4 digits with leading zeros
@@ -30,44 +43,65 @@ export class TestMongoDb {
     this.dbName = `${describeName}-${formattedNum}`;
 
     // Connect to MongoDB using test configuration
-    const uri = this.getMongoUri();
-    this.client = new MongoClient(uri);
-    await this.client.connect();
-    
-    console.log(`Created test database: ${this.dbName}`);
+    this.mongoConnectionInfo = this.getMongoConnectionInfo(mongoDB);
+
     return {
-      client: this.client,
-      db: this.getDb(),
+      ...this.mongoConnectionInfo,
       dbName: this.dbName
     };
   }
 
+  // async setup({ describeName }: TestDbConfig) {
+  //   // Generate a random number between 1 and 9999
+  //   const randomNum = Math.floor(Math.random() * 9999) + 1;
+  //   // Format the number to be 4 digits with leading zeros
+  //   const formattedNum = randomNum.toString().padStart(4, '0');
+  //   // Create unique database name
+  //   this.dbName = `${describeName}-${formattedNum}`;
+
+  //   // Connect to MongoDB using test configuration
+  //   const { path } = this.getMongoConnectionInfo();
+  //   this.client = new MongoClient(path);
+  //   await this.client.connect();
+
+  //   console.log(`Created test database: ${this.dbName}`);
+  //   return {
+  //     client: this.client,
+  //     db: this.getDb(),
+  //     dbName: this.dbName
+  //   };
+  // }
+
+  getClient() {
+    if (this.client) {
+      return this.client
+    }
+    if (!this.mongoConnectionInfo) {
+      throw new Error(`there's no path for getClient`)
+    }
+    this.client = new MongoClient(this.mongoConnectionInfo.path)
+    return this.client
+  }
+
   async teardown() {
-    if (this.client && this.dbName) {
+    if (this.mongoConnectionInfo && this.dbName) {
       // Drop the test database
-      await this.client.db(this.dbName).dropDatabase();
+      await this.getClient().db(this.dbName).dropDatabase();
       console.log(`Dropped test database: ${this.dbName}`);
-      
+
       // Close MongoDB connection
-      await this.client.close();
+      await this.getClient().close();
       this.client = null;
       this.dbName = null;
     }
   }
 
   async cleanup() {
-    if (this.client && this.dbName) {
+    if (this.mongoConnectionInfo && this.dbName) {
       // Clean up the test database collections
-      const db = this.client.db(this.dbName);
+      const db = this.getClient().db(this.dbName);
       await db.collection('courses').deleteMany({});
     }
-  }
-
-  getDb(): Db {
-    if (!this.client || !this.dbName) {
-      throw new Error('Test database not initialized. Call setup first.');
-    }
-    return this.client.db(this.dbName);
   }
 }
 

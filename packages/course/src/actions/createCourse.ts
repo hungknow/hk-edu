@@ -15,7 +15,7 @@ export function buildCreateCourse({ createCourseEntity }: BuildCreateCourseParam
     return {
       id: createdEntity._id.toHexString(),
       title: createdEntity.title,
-      name: createdEntity.name, 
+      description: createdEntity.description, 
     };
   };
 }

@@ -5,12 +5,5 @@ export interface IMongoConfig {
     dbName: string
     user: string
     pass: string
-}
-
-export interface ITestMongoConfig {
-    host: string
-    port: number
-    user: string
-    pass: string
     params?: string
 }

@@ -12,7 +12,7 @@ export function buildGetCourses({ getCourseEntities }: BuildGetCoursesParams): G
     return courseEntities.map((entity: CourseEntity) => ({
       id: entity._id.toHexString(), // Convert ObjectId to string
       title: entity.title,
-      name: entity.name, // Map name back to description for the public model
+      description: entity.description,
     }));
   };
 } 

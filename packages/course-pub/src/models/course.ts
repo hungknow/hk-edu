@@ -2,8 +2,8 @@ import { z } from "zod";
 
 export const zCourse = z.object({
   id: z.string(),
-  name: z.string(),
   title: z.string(),
+  description: z.string(),
 });
 
 export type Course = z.infer<typeof zCourse>;

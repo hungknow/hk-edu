@@ -152,5 +152,5 @@ test-output
 packages/block-editor/
 packages/block-editor-pub/
 
-config/default.json
-config/local.json
+**/config/default.json
+**/config/local.json
