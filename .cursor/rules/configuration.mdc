@@ -1,0 +1,6 @@
+---
+description: Whenever agent need to create or update the configuration or environment variable, or access data from `config` variable, follow the document to create configuration
+globs: 
+alwaysApply: false
+---
+Find the document at [configuration.md](mdc:docs/configuration.md)

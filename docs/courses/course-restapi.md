@@ -1,28 +1,22 @@
 ## File structure
 
-The filename is decided by the RestAPI path.
-
-With the following URLs, course is the parent subpath, so define the RestAPI handlers and its logic action pattern in `course.ts` filename.
-- `/v1/course/`
-- `/v1/course/lessons`
-
-
 ```
 course-restapi
 |- src
-   |- api                  // Define the RestAPI handlers in this folder
-      |- course.ts         // RestAPI handlers for `/v1/course/***` path
-   |- actions              // Contains all business logics 
-      |- course.ts         // The business logic handling for `course` API
-      |- course.test.ts    // The unit test of `course.ts` file
+   |- handlers                  // Define the RestAPI handlers in this folder
+      |- index.ts
+      |- getCourses.ts              // RestAPI handler for `GET /v1/course` path
+      |- postCourses.ts             // RestAPI handler for `POST /v1/course` path
+      |- postCoursesLessons.ts      // RestAPI handler for `POST /v1/course/lessons` path
+   |- routes.ts                     // Map the RestAPI handlers to the URL path
 |- tests
-   | api
-      |- course.test.ts    // The integration tests for Course API
+   | handlers
+      |- getCourses.test.ts    // The integration tests for `GET /v1/course` path
 ```
 
 ## Models
 
-The request/response models must be reference from [`course-restapi-pub`](../../packages/course-restapi-pub/package.json) package.
+The request/response models must be referenced from [`course-restapi-pub`](../../packages/course-restapi-pub/package.json) package.
 Don't define the RestAPI request/response model in the package `course-restapi`.
 
 ## Logic rules
@@ -32,3 +26,6 @@ Don't define the RestAPI request/response model in the package `course-restapi`.
 ## Tests
 - Integration tests are written in `tests` folder
 - Unit tests are written in the same folder as the source code file
+
+### Reference for AI model
+- [`course-restapi-pub`](mdc:packages/course-restapi-pub)

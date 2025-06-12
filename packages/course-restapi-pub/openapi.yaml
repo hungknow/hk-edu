@@ -14,7 +14,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CourseList'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Course'
     post:
       summary: Create a new course
       requestBody:
@@ -43,7 +45,9 @@ paths:
   #         content:
   #           application/json:
   #             schema:
-  #               $ref: '#/components/schemas/CourseList'
+  #               type: array
+                  # items:
+                  #   $ref: '#/components/schemas/Course'
 
   # /v1/courses/{course_id}:
   #   get:
@@ -176,12 +180,11 @@ components:
     #         amount:
     #           type: string
     #           description: The amount of the promotion
-    CourseList:
-      type: array
-      items:
-        $ref: '#/components/schemas/Course'
     CoursePostRequest:
       type: object
+      required:
+        - title
+        - description
       properties:
         title:
           type: string

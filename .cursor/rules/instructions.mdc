@@ -1,12 +1,13 @@
 ---
 description: 
-globs: *.ts,*.tsx
-alwaysApply: false
+globs: 
+alwaysApply: true
 ---
 You are an expert in Typescript, CSS, React, Nextjs
 
 Syntax and Formatting
 - Use the "function" keyword for pure functions.
+- Declare "interface" instead of "type" if we can.
 
 Validation
 - Use Zod for schema validation
@@ -44,7 +45,7 @@ Internationalization (i18n)
 
 RestAPI Client
 - Don't write code for RestAPI client manually.
-- Update the OpenAPI document in `xxx-restapi` package, then using [`OpenAPI Generator`](mdc:https:/github.com/OpenAPITools/openapi-generator) tool to generate the client from OpenAPI document to `xxx-restapi-client` package.
+- Update the OpenAPI document in `xxx-restapi` package, then using `openapi-ts` tool to generate the client from OpenAPI document to `xxx-restapi-client` package.
 
 RestAPI Server
 - Use `Fastify` to handle HTTP request and serve RestAPI API
@@ -53,9 +54,6 @@ Javascript bundler
 - Use `tsc` compiler for libraries and React component libraries
 - For webapp, use `Nextjs` to handle routing and pages.
 
-### React component
-- Prefer to use headless component
-- Extract the logic into the React hook with meaningful hook name
 
 ### Package manager
 - Prefer to use pnpm
@@ -65,5 +63,6 @@ Javascript bundler
 
 ## Naming convention
 - The filename and the name of classes, functions **must** follow the guide [typescriptNamingConvention.md](mdc:docs/ai-instructions/typescriptNamingConvention.md)
+- When declaring or implementing the action, follow the name convention in [actionPattern.md](mdc:docs/actionPattern.md)
 
 

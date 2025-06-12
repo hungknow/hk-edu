@@ -1,16 +1,21 @@
-import { v4 as uuidv4 } from 'uuid';
-import { Course, CoursePostRequest, CreateCourse } from '@hk/course-pub';
+import type { CreateCourse } from '@hk/course-pub';
+import type { CreateCourseEntity } from '@hk/course-nosql-persistence';
 
-// In-memory storage for courses (in a real app, this would be a database)
-const courses: Course[] = [];
+export interface BuildCreateCourseParams {
+  createCourseEntity: CreateCourseEntity; 
+}
 
-export const createCourse: CreateCourse = async (payload: CoursePostRequest) => {
-  const course: Course = {
-    course_id: uuidv4(),
-    name: payload.name,
-    description: payload.description,
-  };
+export function buildCreateCourse({ createCourseEntity }: BuildCreateCourseParams): CreateCourse {
+  return async (courseData) => {
+    const createdEntity = await createCourseEntity({
+      title: courseData.title,
+      description: courseData.description,
+    });
   
-  courses.push(course);
-  return course;
-}; 
+    return {
+      id: createdEntity._id.toHexString(),
+      title: createdEntity.title,
+      description: createdEntity.description, 
+    };
+  };
+}

@@ -1,6 +1,6 @@
 ---
-description: 
-globs: packages/course-nosql-persistence/**/*
+description: When creating/updating files and folder in folder `course-nosql-persistence`, read this rule
+globs: 
 alwaysApply: false
 ---
-When creating new file or folder in package `course-nosql-persistence`, referencing the file structure in file [index.md](mdc:docs/courses/course-nosql-persistence/index.md)
+When creating or editing the file or folder in package `course-nosql-persistence`, referencing the [index.md](mdc:docs/courses/course-nosql-persistence/index.md) file for file structure and requirements

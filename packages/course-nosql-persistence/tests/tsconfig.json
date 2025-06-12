@@ -1,0 +1,11 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "../../dist/out-tsc",
+    "types": ["jest", "node"]
+  },
+  "include": [
+    "./**/*",
+    "../config/**.d.ts"
+, "../src/actions/CreateCourseEntity.test.ts"  ]
+}

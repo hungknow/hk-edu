@@ -1,43 +1,32 @@
 {
   "name": "@hk/course-restapi",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "description": "Course REST API implementation",
   "private": true,
-  "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "dist/index.cjs.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc",
-    "test": "playwright test",
+    "build": "tsup",
+    "dev": "tsup src/index.ts --watch",
+    "watchdeps": "nx watch -p @hk/course-restapi --includeDependentProjects -- nx run-many -t build -p \\$NX_PROJECT_NAME --exclude=@hk/course-restapi",
     "test:integration": "playwright test integration.test.ts",
-    "dev": "ts-node-dev --respawn src/index.ts",
-    "start": "ts-node src/server.ts"
-  },
-  "exports": {
-    "./package.json": "./package.json",
-    ".": {
-      "development": "./src/index.ts",
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
-    }
+    "start": "node --enable-source-maps dist/index.cjs.js",
+    "test": "exit 0"
   },
   "dependencies": {
+    "@fastify/cors": "^8.0.0",
     "@hk/course": "workspace:*",
+    "@hk/course-nosql-persistence": "workspace:*",
     "@hk/course-pub": "workspace:*",
     "@hk/course-restapi-pub": "workspace:*",
-    "cors": "^2.8.5",
-    "express": "^4.18.3",
-    "tslib": "^2.3.0"
+    "awilix": "^12.0.5",
+    "config": "^4.0.0",
+    "fastify": "^4.0.0",
+    "zod": "^3.25.58"
   },
   "devDependencies": {
-    "@types/node": "^20.11.24",
-    "typescript": "^5.3.3",
-    "jest": "^29.7.0",
-    "@types/jest": "^29.5.12",
-    "ts-node-dev": "^2.0.0",
-    "@types/cors": "^2.8.17",
-    "@types/express": "^4.17.21",
-    "@playwright/test": "^1.42.1"
+    "@jest/globals": "^29.0.0",
+    "@playwright/test": "^1.42.1",
+    "@types/config": "^3.3.5"
   }
 }

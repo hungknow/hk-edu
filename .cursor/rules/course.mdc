@@ -1,6 +1,6 @@
 ---
-description: 
-globs: packages/course/**/*
+description: When creating/updating files and folder in folder `packages/course`, read this rule
+globs: 
 alwaysApply: false
 ---
 ## File structure
@@ -11,6 +11,15 @@ course
    |- actions               // Include all actions defined for course
       |- index.ts           // Export all actions define in other files and folders
       |- CreateCourse.ts    // Implement the CreateCourse interface defined in `course-pub` package
+      |- CreateCourse.test.ts // Unit test for `CreateCourse.ts` file
+|- tests                    // Integration tests
+   |- actions
+      |- CrudCourse.test.ts // Integration test for use case `crud course`
 ```
 
 The interface of actions follow the meanings and rules declared in [actionPattern.md](mdc:docs/actionPattern.md)
+
+## Note
+- The package `course` **must not**  depend on the following package
+  - `@hk/course-restapi-pub`
+- Don't implement the Repository pattern, create actions for business logic handling or calling actions from other packages.

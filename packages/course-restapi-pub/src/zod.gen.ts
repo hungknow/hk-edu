@@ -7,15 +7,13 @@ export const zError = z.object({
     message: z.string().optional()
 });
 
-export const zCourse = z.object({
-    id: z.string().optional(),
-    title: z.string().optional(),
-    description: z.string().optional()
+export const zCoursePostRequest = z.object({
+    title: z.string(),
+    description: z.string()
 });
 
-export const zCourseList = z.array(zCourse);
-
-export const zCoursePostRequest = z.object({
+export const zCourse = z.object({
+    id: z.string().optional(),
     title: z.string().optional(),
     description: z.string().optional()
 });
@@ -23,6 +21,6 @@ export const zCoursePostRequest = z.object({
 /**
  * Successful operation
  */
-export const zGetV1CoursesResponse = zCourseList;
+export const zGetV1CoursesResponse = z.array(zCourse);
 
 export const zPostV1CoursesData = zCoursePostRequest;

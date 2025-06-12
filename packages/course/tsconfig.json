@@ -1,13 +1,10 @@
 {
   "extends": "../../tsconfig.base.json",
-  "files": [],
-  "include": [],
-  "references": [
-    {
-      "path": "../course-pub"
-    },
-    {
-      "path": "./tsconfig.lib.json"
-    }
-  ]
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": "src",
+    "outDir": "dist",
+    "emitDeclarationOnly": true
+  },
+  "include": ["src/**/*.ts", "config/*.d.ts"]
 }

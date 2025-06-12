@@ -1,15 +1,12 @@
-export interface Course {
-  course_id: string;
-  name: string;
-  description: string;
-}
+import { z } from "zod";
 
-export interface CoursePostRequest {
-  name: string;
-  description: string;
-}
+export const zCourse = z.object({
+  id: z.string(),
+  title: z.string(),
+  description: z.string(),
+});
 
-export interface CourseList extends Array<Course> {}
+export type Course = z.infer<typeof zCourse>;
 
 export interface CourseDetail extends Course {
   lessons: Array<{

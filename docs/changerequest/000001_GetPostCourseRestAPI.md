@@ -1,4 +1,4 @@
-With the definition in [openapi.yaml](../../packages/course-restapi-pub/openapi.yaml)
+With the definition in [`openapi.yaml`](../../packages/course-restapi-pub/openapi.yaml)
 
 ### Intructions for AI
 - Generate the models in `course-restapi-pub` package
@@ -10,19 +10,29 @@ With the definition in [openapi.yaml](../../packages/course-restapi-pub/openapi.
 
 ### Actions
 Define new actions which are necessary for RestAPI handler
-    - [`CreateCourse`](../courses/course-actions.md#createcourse)
-    - [`GetCourses`](../courses/course-actions.md#getcourses)
-    - [`CreateCourseEntity`](../courses/course-nosql-persistence/actions.md#createcourseentity)
-    - [`GetCourseEntities`](../courses/course-nosql-persistence/actions.md#createcourseentity)
+- [`CreateCourse`](../courses/course-actions.md#createcourse)
+- [`GetCourses`](../courses/course-actions.md#getcourses) 
+- [`CreateCourseEntity`](../courses/course-nosql-persistence/actions.md#createcourseentity)
+- [`GetCourseEntities`](../courses/course-nosql-persistence/actions.md#getcourseentities)
+
+### RestAPI Handler
+
+#### `POST /v1/courses`
+- Verify the provided data by `zod`
+- Call `CreateCourse` action to create course
+
+#### `GET /v1/courses`
+- Call `GetCourses` to prepare the data 
 
 ### Unit tests
 - Add mock test for actions in `course` package
 
 ### Integration tests
-- Add integrations tests for RestAPI in `course-restapi` package
+- Create [`CrudCourse`](mdc:docs/courses/course-integration-test.md) in `course/tests/CrudCourse.test.ts` file
 
-#### List of test cases
-- Post the new course
-- Get list of courses. Confirm there are one course and the course's data are valid
-- Post another new course
-- Get list of courses. Confirm there are two courses and their data are valid
+### Reference for AI models:
+- [openapi.yaml](mdc:src/packages/course-restapi-pub/openapi.yaml)
+- [`CreateCourse`](mdc:docs/courses/course-actions.md#createcourse)
+- [`GetCourses`](mdc:docs/courses/course-actions.md#getcourses) 
+- [`CreateCourseEntity`](mdc:docs/courses/course-nosql-persistence/actions.md#createcourseentity)
+- [`GetCourseEntities`](mdc:docs/courses/course-nosql-persistence/actions.md#getcourseentities)

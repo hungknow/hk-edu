@@ -3,20 +3,20 @@
   "version": "0.0.1",
   "private": true,
   "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
   "scripts": {
     "openapi-ts": "openapi-ts",
-     "build": "tsc -p tsconfig.lib.json"
+    "build": "tsup && tsc --emitDeclarationOnly --declaration",
+    "dev": "tsup src/index.ts --watch"
   },
   "exports": {
-    "./package.json": "./package.json",
     ".": {
       "development": "./src/index.ts",
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
+      "import": "./dist/index.esm.js",
+      "default": "./dist/index.cjs.js"
     }
   },
   "dependencies": {
