@@ -10,7 +10,7 @@ export function buildCreateCourse({ createCourseEntity }: BuildCreateCourseParam
     const createdEntity = await createCourseEntity({
       title: courseData.title,
       description: courseData.description,
-    });
+    })
   
     return {
       id: createdEntity._id.toHexString(),
