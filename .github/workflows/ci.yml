@@ -19,14 +19,6 @@ jobs:
           filter: tree:0
           fetch-depth: 0
 
-      - name: Restore Nx Cache
-        uses: actions/cache/restore@v4
-        with:
-          path: |
-            ${{ github.workspace }}/.nx
-            !${{ github.workspace }}/.nx/workspace-data/d
-          key: nx-caches-v1-${{ env.NX_BASE }}
-
       - uses: pnpm/action-setup@v4
         name: Install pnpm
         with:
@@ -47,6 +39,15 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
       - uses: nrwl/nx-set-shas@v4
+
+      # Must call after nrwl/nx-set-shas@v4
+      - name: Restore Nx Cache
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            ${{ github.workspace }}/.nx
+            !${{ github.workspace }}/.nx/workspace-data/d
+          key: nx-caches-v1-${{ env.NX_BASE }}
 
       - name: Copy environment config file
         shell: bash
