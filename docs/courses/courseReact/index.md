@@ -24,10 +24,10 @@ Load the content of lesson, display it.
 ## LessonContentEditor
 Load the content of lesson, user can modify the content and submit. -->
 
-[CourseTree](./CourseTree.md)
-[LessonTree](./LessonTree.md)
+[CourseTree](courses/courseReact/CourseTree.md)
+[LessonTree](courses/courseReact/LessonTree.md)
 
-[LessonTreeItem](./LessonTreeItem.md)
+[LessonTreeItem](courses/courseReact/LessonTreeItem.md)
 
 <!-- ## LessonContentHeading
 Display the  -->
