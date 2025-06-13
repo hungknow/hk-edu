@@ -11,7 +11,6 @@ User can click to expand the list of lessons.
 
 ### Display Logic
 
-
 * **Title (`title`):**
     * Rendered as primary text.
     * **Truncation:** If `title` exceeds `max-width`, truncate with ellipsis (`...`).
@@ -20,7 +19,7 @@ User can click to expand the list of lessons.
 
 ### Styling
 
-Component adheres to:
+Component adheres by Tailwind to:
 
 * `min-width`: `150px`
 * `padding-left`: `8px`
