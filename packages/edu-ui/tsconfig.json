@@ -2,10 +2,13 @@
   "extends": "../../tsconfig.react-base.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "paths": {
-      "@workspace/ui/*": ["./src/*"]
-    }
+    "rootDir": "src",
+    "outDir": "dist",
+    "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo",
+    "emitDeclarationOnly": true,
+    "forceConsistentCasingInFileNames": true,
+    "types": ["node"]
   },
-  "include": ["."],
+  "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "dist"]
 }

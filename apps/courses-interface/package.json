@@ -15,7 +15,8 @@
     "next": "15.3.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "tailwind-merge": "^3.0.1"
+    "tailwind-merge": "^3.0.1",
+    "@hk/edu-ui": "workspace:*"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
