@@ -20,9 +20,9 @@ function DesktopNav() {
     // The Navigation at top
     <nav className="flex flex-col items-center">
       // Each Nav item is wrapped in NavItem
-      <NavItem href="#" label="Dashboard">
+      <SidebarNavItem href="#" label="Dashboard">
         <Home className="h-5 w-5" />
-      </NavItem>
+      </SidebarNavItem>
     </nav>
 
     // The navigation at bottom

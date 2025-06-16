@@ -1,0 +1,6 @@
+---
+description: When creating or updating the new file of `courses-interface`, follow the content of this file
+globs: 
+alwaysApply: false
+---
+Reference the file [index.md](mdc:docs/courses-interface/index.md)

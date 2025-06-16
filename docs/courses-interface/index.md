@@ -17,8 +17,8 @@ apps
             |- layout.tsx
             |- page.tsx     // Display content of lesson
     |- components
-      |- nav-sidebar.tsx
-      |- 
+      |- nav-sidebar.tsx        // NavSidebar React component
+      |- nav-sidebar.test.tsx   // The unit test of `nav-sidebar.tsx`
     |- hooks
     |- lib                  // Contains functions, such as reusable utility functions and data fetching functions
 packages             
