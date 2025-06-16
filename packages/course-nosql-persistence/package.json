@@ -12,7 +12,7 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.esm.js",
       "require": "./dist/index.cjs.js",
-      "default": "./cjs/index.cjs.js"
+      "default": "./dist/index.cjs.js"
     },
     "./test-utils": {
       "types": "./dist/test-utils/index.d.ts",
