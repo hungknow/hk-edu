@@ -8,17 +8,25 @@
   "private": true,
   "devDependencies": {
     "@eslint/js": "^9.8.0",
+    "@nx/devkit": "21.2.0",
     "@nx/eslint": "21.1.2",
     "@nx/eslint-plugin": "21.1.2",
     "@nx/jest": "21.1.2",
-    "@nx/js": "21.1.2",
+    "@nx/js": "21.2.0",
+    "@nx/next": "21.2.0",
+    "@nx/playwright": "21.2.0",
+    "@playwright/test": "^1.36.0",
     "@swc-node/register": "~1.9.1",
+    "@swc/cli": "~0.6.0",
     "@swc/core": "~1.5.7",
     "@swc/helpers": "~0.5.11",
     "@swc/jest": "~0.2.36",
     "@types/config": "^3.3.5",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.0.0",
+    "@types/react": "19.0.0",
+    "@types/react-dom": "19.0.0",
+    "autoprefixer": "10.4.13",
     "esbuild": "^0.20.0",
     "eslint": "^9.8.0",
     "eslint-config-prettier": "^10.0.0",
@@ -27,7 +35,9 @@
     "jsonc-eslint-parser": "^2.1.0",
     "mongoose": "^8.15.1",
     "nx": "21.1.2",
+    "postcss": "8.4.38",
     "prettier": "^2.6.2",
+    "tailwindcss": "3.4.3",
     "ts-jest": "^29.1.0",
     "ts-node": "10.9.1",
     "tslib": "^2.3.0",
@@ -40,5 +50,10 @@
     "overrides": {
       "@types/node": "^20.0.0"
     }
+  },
+  "dependencies": {
+    "next": "~15.2.4",
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
   }
 }

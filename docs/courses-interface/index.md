@@ -25,6 +25,10 @@ courses-interface
         |- src
         |- components
             |- button.tsx   // The core Button component
+            |- tabs.tsx
+            |- card.tsx
+            |- breadcrumb.tsx
+            |- badge.tsx
         |- hooks
         |- styles
             |- globals.css  // The CSS variables for `tailwindcss`
