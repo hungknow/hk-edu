@@ -138,24 +138,42 @@ interface SidebarGroupLabelProps extends React.ComponentProps<"div"> {
 **Purpose**: Primary interactive element for navigation and actions within sidebar items.
 
 **UI/UX Requirements**:
-- **Size**: 32px height, flexible width
-- **Padding**: 8px horizontal padding
-- **Icons**: 16px icon size with 8px spacing to text
-- **Hover States**: Background color change and text color change
-- **Active States**: Accent background color for active state
-- **Focus**: Clear focus ring for keyboard navigation
-- **Tooltips**: Show on hover when sidebar is collapsed
+- **Size**: Default height is h-8 (2rem), small is h-7 (1.75rem), large is h-12 (3rem).
+- **Layout**: Full width, flex row, center items, gap-2 (0.5rem) between children.
+- **Padding**: px-2 (0.5rem) horizontal.
+- **Icons**: w-4 h-4 (1rem), do not shrink.
+- **Typography**: text-sm by default, text-xs for small, text-sm for large.
+- **Text Truncation**: Last span truncates with ellipsis.
+- **Border Radius**: rounded-md.
+- **Hover**: On hover, background and text use sidebar accent colors.
+- **Active**: If active, use accent background and font-medium.
+- **Focus**: No outline, but focus-visible ring-2 (0.125rem) in sidebar ring color.
+- **Disabled**: Pointer events none, opacity-50.
+- **Responsive**: In collapsed/icon-only mode, use size-8 (2rem) and p-2 (0.5rem).
+- **Tooltips**: When collapsed, show tooltip on hover, right side, vertically centered.
+- **Variants**: Support "default" and "outline" visual styles.
+- **Group Context**: If menu actions exist, add pr-8 (2rem) right padding.
 
 **Props**:
 ```typescript
-interface SidebarMenuButtonProps {
-  children: React.ReactNode;
-  className?: string;
+interface SidebarMenuButtonProps extends React.ComponentProps<"button"> {
   asChild?: boolean;
-  tooltip?: string;
-  onClick?: () => void;
+  isActive?: boolean;
+  variant?: "default" | "outline" = "default";
+  size?: "default" | "sm" | "lg" = "default";
+  tooltip?: string | React.ComponentProps<typeof TooltipContent>;
+  className?: string;
 }
 ```
+
+**Implementation Details**:
+- Uses class-variance-authority (cva) for variant management
+- Supports asChild pattern for composition with Radix UI Slot
+- Integrates with sidebar context for responsive behavior
+- Includes comprehensive data attributes for styling and state management
+- Supports both string and object tooltip configurations
+- Uses CSS custom properties for theming (--sidebar-accent, --sidebar-ring, etc.)
+- Implements proper accessibility attributes and keyboard navigation
 
 ### SidebarMenuAction
 **Purpose**: Secondary action button (e.g., dropdown triggers, more options) within menu items.
@@ -186,14 +204,10 @@ interface SidebarMenuActionProps {
 - **Spacing**: 2px gap between sub-items
 - **Animation**: Smooth expand/collapse animation
 - **Visual Hierarchy**: Muted colors to show subordination
+- **Data attributes**: Include `data-slot="sidebar-menu-sub"` and `data-sidebar="menu-sub"`
+- **CSS**: Hidden for CSS class `group-data-[collapsible=icon]:hidden`
 
-**Props**:
-```typescript
-interface SidebarMenuSubProps {
-  children: React.ReactNode;
-  className?: string;
-}
-```
+**Props**: `React.CompoenentProps<"ul">`
 
 ### SidebarMenuSubItem
 **Purpose**: Container for individual sub-menu items.

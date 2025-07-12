@@ -2,3 +2,4 @@
 - [x] Implement SidebarGroupLabel
 - [x] Implement SidebarMenu
 - [x] Implement SidebarMenuItem
+- [x] Implement SideBarMenuButton
