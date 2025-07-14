@@ -2,6 +2,7 @@
   "port": 5000,
   "rendererUrl": "http://localhost:5050",
   "plugins": ["react-cosmos-plugin-vite"],
+  "globalImports": ["src/styles/globals.css"],
   "vite": {
     "root": "./",
     "build": {
