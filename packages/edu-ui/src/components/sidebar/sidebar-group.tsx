@@ -1,7 +1,7 @@
 import * as React from "react"
 import { cn } from "../../lib/utils"
 
-function SidebarGroup({ children, className }: React.ComponentProps<"div">) {
+export function SidebarGroup({ children, className }: React.ComponentProps<"div">) {
   return (
     <div
       className={cn(
@@ -13,5 +13,3 @@ function SidebarGroup({ children, className }: React.ComponentProps<"div">) {
     </div>
   )
 }
-
-export { SidebarGroup }

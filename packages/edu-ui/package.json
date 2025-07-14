@@ -37,7 +37,10 @@
   "scripts": {
     "build": "tsup && tsc --emitDeclarationOnly --declaration",
     "dev": "tsup src/index.ts --watch",
-    "lint": "eslint . --max-warnings 0"
+    "lint": "eslint . --max-warnings 0",
+    "cosmos": "cosmos",
+    "cosmos-native": "cosmos-native",
+    "cosmos-export": "cosmos-export"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.14",
@@ -48,7 +51,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.475.0",
-    "next-themes": "^0.4.4",
+    "next-themes": "^0.4.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tailwind-merge": "^3.0.1",
@@ -61,7 +64,12 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^4.6.0",
+    "react-cosmos": "^7.0.0",
+    "react-cosmos-dom": "^7.0.0",
+    "react-cosmos-plugin-vite": "^7.0.0",
     "tailwindcss": "^4.0.8",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "vite": "^7.0.4"
   }
 }
